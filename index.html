@@ -169,33 +169,58 @@
             #navbar.scrolled { top: 1rem; padding: 0.75rem 2rem; }
         }
 
-        /* Splash Screen */
+        /* Splash Screen - Tela Cheia & Efeito Cortina */
         #splash-screen {
             position: fixed;
             inset: 0;
             z-index: 9999;
-            background-color: #050505;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
+            overflow: hidden;
+            pointer-events: none; /* Evita bloquear cliques enquanto some */
         }
-        #splash-screen.hidden-splash {
-            opacity: 0;
-            visibility: hidden;
+        .curtain-panel {
+            position: absolute;
+            top: 0;
+            width: 50.1%; /* 0.1% a mais para evitar linha no meio */
+            height: 100%;
+            background-color: #050505;
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 1;
+            pointer-events: auto; /* Bloqueia cliques na cortina preta */
+        }
+        .curtain-panel.left {
+            left: 0;
+        }
+        .curtain-panel.right {
+            right: 0;
+        }
+        #splash-screen.hidden-curtain .curtain-panel.left {
+            transform: translateX(-100%);
+        }
+        #splash-screen.hidden-curtain .curtain-panel.right {
+            transform: translateX(100%);
+        }
+        .splash-logo-container {
+            position: relative;
+            z-index: 2;
+            width: 90vw;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease-in-out, transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
         }
         .splash-logo {
-            width: 150px;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Mantém a proporção sem distorcer, mas usa todo o espaço */
             animation: pulse-slow 2s infinite;
-            transition: transform 0.8s ease-in-out;
         }
-        #splash-screen.hidden-splash .splash-logo {
-            transform: scale(1.5);
-        }
-        @media (min-width: 768px) {
-            .splash-logo {
-                width: 250px;
-            }
+        #splash-screen.hidden-logo .splash-logo-container {
+            opacity: 0;
+            transform: scale(2.5); /* Efeito de Zoom In pesado antes de sumir */
         }
     </style>
 </head>
@@ -203,7 +228,11 @@
 
     <!-- Splash Screen -->
     <div id="splash-screen">
-        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Legião Leal" class="splash-logo">
+        <div class="curtain-panel left"></div>
+        <div class="curtain-panel right"></div>
+        <div class="splash-logo-container">
+            <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Legião Leal" class="splash-logo">
+        </div>
     </div>
 
     <!-- Sticky Floating Header -->
@@ -782,13 +811,20 @@
         // --- Splash Screen ---
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
-            // Mantém a tela inicial por 1.5 segundos para admiração antes de transicionar
+            // Mantém a logo na tela para admiração
             setTimeout(() => {
-                splash.classList.add('hidden-splash');
-                // Remove a div do DOM após o término da transição de 800ms
+                // 1º Passo: Dá zoom e oculta a logo
+                splash.classList.add('hidden-logo');
+                
+                // 2º Passo: Um leve atraso (400ms) para abrir a cortina horizontalmente
                 setTimeout(() => {
-                    splash.remove();
-                }, 800);
+                    splash.classList.add('hidden-curtain');
+                    
+                    // 3º Passo: Remove os elementos do DOM após o término da transição da cortina (1.2s)
+                    setTimeout(() => {
+                        splash.remove();
+                    }, 1200);
+                }, 400);
             }, 1500);
         });
     </script>
