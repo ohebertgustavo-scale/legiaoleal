@@ -1,694 +1,796 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-    <script data-offline-resolve="1">
-        (function(){
-        var ASSET_MAP = {};
-        function resolveLocal(u){
-            if (!u || typeof u !== 'string') return null;
-            if (u.indexOf('data:') === 0 || u.indexOf('blob:') === 0) return null;
-            return ASSET_MAP[u] || null;
-        }
-        window.__resolveLocal = resolveLocal;
-        })();
-    </script>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Legião Leal | Saúde, Família, Trabalho e Honra</title>
-    <meta name="description" content="A Legião Leal não é apenas uma marca de roupas. É o uniforme daqueles que defendem os pilares da Saúde, Família, Trabalho e Honra.">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet"/>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legião Leal - Vista seus valores, honre seu legado.</title>
+    <meta name="description" content="O uniforme daqueles que defendem a Saúde, a Família, o Trabalho e a Honra. Aliste-se na Legião Leal.">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Cross-Pattee-Heraldry.svg/1024px-Cross-Pattee-Heraldry.svg.png" type="image/png">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            black: '#000000',
-                            dark: '#0e110a',      // Fundo tático ultra escuro
-                            military: '#1b2215',  // Verde militar oficial da marca
-                            lightMil: '#2b3324',  // Verde militar claro de destaque
-                            cream: '#e4e8ca',     // Detalhes creme ("tactical")
-                            brGreen: '#009c3b',   // Verde Brasil
-                            brYellow: '#ffdf00',  // Amarelo Brasil
+                        legiao: {
+                            gold: '#C6A664',       // Dourado/Metálico para CTAs
+                            goldHover: '#A88A4D',
+                            green: '#2A3324',      // Verde Militar Escuro
+                            greenLight: '#3A4731',
+                            black: '#050505',      // Fundo Principal
+                            dark: '#0F0F0F',       // Fundo Secundário
+                            gray: '#8D8D8D',
+                            light: '#F5F5F5'
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         display: ['Oswald', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'blob': 'blob 7s infinite',
+                        'shine': 'shine 3s infinite',
+                        'slow-zoom': 'slowZoom 20s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        shine: {
+                            '0%': { left: '-100%' },
+                            '20%': { left: '100%' },
+                            '100%': { left: '100%' },
+                        },
+                        slowZoom: {
+                            '0%': { transform: 'scale(1.05)' },
+                            '100%': { transform: 'scale(1.25)' },
+                        }
                     }
                 }
             }
-        }
+        };
     </script>
 
-    <!-- Icons (Lucide) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- AOS Animation -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
+        /* Glassmorphism premium */
+        .glass-card {
+            background: rgba(15, 15, 15, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .font-display-custom { 
-            font-family: 'Oswald', sans-serif !important; 
-            font-weight: 700 !important; 
-            letter-spacing: 0.08em !important; 
-            text-transform: uppercase;
-        }
-
-        ::-webkit-scrollbar { height: 4px; width: 4px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #e4e8ca; }
-        ::-webkit-scrollbar-thumb:hover { background: #009c3b; }
-
-        .text-tactical { color: #e4e8ca; }
-        .bg-tactical { background-color: #e4e8ca; }
-        .border-tactical { border-color: #e4e8ca; }
-        
-        /* Efeitos Premium no Texto (Cores do Brasil) */
-        .text-outline { 
-            -webkit-text-stroke: 1px rgba(228, 232, 202, 0.3); 
-            color: transparent; 
-        }
-        .text-glow {
-            text-shadow: 0 0 30px rgba(0, 156, 59, 0.7), 0 0 60px rgba(255, 223, 0, 0.4);
-        }
-        
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: fit-content; animation: marquee 35s linear infinite; }
-        
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        .noise { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: url('https://grainy-gradients.vercel.app/noise.svg'); 
-            opacity: 0.05; pointer-events: none; z-index: 9000; 
-        }
-
-        .slanted { transform: skewX(-8deg); }
-
-        ::selection {
-            background-color: #e4e8ca;
-            color: black;
-        }
-
-        /* --- ANIMAÇÃO DAS PORTAS (LOGOTIPO FULLSCREEN) --- */
-        .split-door {
-            position: fixed;
-            top: 0;
-            height: 100vh;
-            width: 50vw;
-            z-index: 9998;
+        /* Mockup dos celulares */
+        .phone-mockup {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            border: 8px solid #141414;
+            border-radius: 2.5rem;
             overflow: hidden;
-            background-color: #0e110a;
-            transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+            background-color: #0F0F0F;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        #door-left {
-            left: 0;
-            border-right: 1px solid rgba(255,255,255,0.05);
+
+        /* Efeito de brilho contínuo nos botões */
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
         }
-        #door-right {
-            right: 0;
-            border-left: 1px solid rgba(255,255,255,0.05);
-        }
-        
-        /* Imagem ocupando toda a tela mas contida dentro de cada porta (50vw) */
-        .door-img {
+        .btn-shine::after {
+            content: '';
             position: absolute;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover; /* Faz a logo ocupar 100% da tela sem ser quadrado */
-            object-position: center;
-            max-width: none;
-            filter: drop-shadow(0px 0px 40px rgba(0, 156, 59, 0.3));
-            animation: pulseLogo 2s infinite alternate;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.2);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
         }
+
+        /* Parallax Wrapper */
+        .parallax-wrapper {
+            will-change: transform;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        /* Reveal Animations */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal-left.active { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
+        .reveal-right.active { opacity: 1; transform: translateX(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
         
-        #door-left .door-img {
-            left: 0;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #C6A664; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A88A4D; }
+
+        /* Header Flutuante Premium */
+        #navbar {
+            position: fixed;
+            z-index: 50;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 1rem);
+            max-width: 80rem;
+            background-color: rgba(15, 15, 15, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.75rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        #door-right .door-img {
-            right: 0;
+        @media (min-width: 640px) {
+            #navbar { top: 1.5rem; width: calc(100% - 2rem); padding: 1rem 2rem; }
         }
-        
-        .door-open-left {
-            transform: translateX(-100%);
+        #navbar.scrolled {
+            background-color: rgba(10, 10, 10, 0.98);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            top: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-color: rgba(198, 166, 100, 0.2);
         }
-        .door-open-right {
-            transform: translateX(100%);
+        @media (min-width: 640px) {
+            #navbar.scrolled { top: 1rem; padding: 0.75rem 2rem; }
         }
-        
-        @keyframes pulseLogo {
-            0% { transform: scale(1); filter: drop-shadow(0px 0px 20px rgba(0, 156, 59, 0.2)); }
-            100% { transform: scale(1.05); filter: drop-shadow(0px 0px 60px rgba(255, 223, 0, 0.5)); }
+
+        /* Splash Screen */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-color: #050505;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out;
         }
-        
-        /* Oculta scrollbar durante animação inicial */
-        body.locked {
-            overflow: hidden;
-            height: 100vh;
+        #splash-screen.hidden-splash {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .splash-logo {
+            width: 150px;
+            animation: pulse-slow 2s infinite;
+            transition: transform 0.8s ease-in-out;
+        }
+        #splash-screen.hidden-splash .splash-logo {
+            transform: scale(1.5);
+        }
+        @media (min-width: 768px) {
+            .splash-logo {
+                width: 250px;
+            }
         }
     </style>
 </head>
-<body class="overflow-x-hidden selection:bg-brand-cream selection:text-black locked">
-    <!-- Efeito de Textura/Ruído Estático Global -->
-    <div class="noise"></div>
+<body class="bg-legiao-black text-white antialiased font-sans overflow-x-hidden">
 
-    <!-- ========================================= -->
-    <!-- PRELOADER: LOGO FULLSCREEN QUE ABRE       -->
-    <!-- ========================================= -->
-    <div id="door-left" class="split-door">
-        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/3.png?raw=true" class="door-img" alt="Logo Legião Leal">
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Legião Leal" class="splash-logo">
     </div>
-    <div id="door-right" class="split-door">
-        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/3.png?raw=true" class="door-img" alt="Logo Legião Leal">
-    </div>
-    <!-- ========================================= -->
 
-    <!-- Header Fixo (Inicialmente invisível, fade in após as portas) -->
-    <header id="main-header" class="fixed w-full top-0 z-[100] bg-black/85 backdrop-blur-md border-b border-white/10 opacity-0 transition-opacity duration-1000">
-        <div class="max-w-[1600px] mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Logo Topo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/3.png?raw=true" alt="Ícone" class="w-10 h-10 object-contain drop-shadow-md">
-                <span class="text-white font-display-custom text-xl tracking-wider hidden sm:block">Legião Leal</span>
-            </a>
+    <!-- Sticky Floating Header -->
+    <header id="navbar">
+        <!-- Brand / Logo -->
+        <a href="#inicio" class="transition-transform duration-300 hover:scale-105 flex items-center gap-3">
+            <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Legião Leal Logo" class="h-8 sm:h-10 w-auto">
+            <span class="font-display font-bold text-lg sm:text-xl tracking-widest text-white uppercase hidden sm:block">Legião Leal</span>
+        </a>
 
-            <!-- Menu Auxiliar / Botão -->
-            <div class="flex items-center gap-6">
-                <span class="hidden md:inline text-xs text-tactical tracking-widest uppercase italic">Vista seus Valores</span>
-                <a href="#formulario" class="bg-brand-brGreen hover:bg-brand-brYellow text-white hover:text-black font-display-custom text-xs px-6 py-2.5 rounded-none transition-all duration-300 slanted uppercase shadow-[0_0_15px_rgba(0,156,59,0.3)]">
-                    Alistar-se agora
-                </a>
-            </div>
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8">
+            <a href="#missao" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">A Missão</a>
+            <a href="#pilares" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Pilares</a>
+            <a href="#arsenal" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">O Arsenal</a>
+            <a href="#fraternidade" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Fraternidade</a>
+            <a href="#tropa" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">A Tropa</a>
+        </nav>
+
+        <!-- CTA Header (Desktop) -->
+        <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="hidden lg:inline-flex bg-legiao-gold hover:bg-legiao-goldHover text-legiao-black px-7 py-3 rounded-full font-bold uppercase tracking-widest text-xs items-center gap-2 transition-transform transform hover:scale-105 shadow-md font-display">
+            Alistar-se <i class="ph-bold ph-sword text-lg"></i>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="lg:hidden text-white p-1 hover:text-legiao-gold transition-colors">
+            <i class="ph-bold ph-list text-3xl"></i>
+        </button>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full mt-4 bg-legiao-dark/95 backdrop-blur-xl rounded-3xl flex flex-col shadow-2xl border border-white/10 overflow-hidden">
+            <a href="#missao" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">A Missão</a>
+            <a href="#pilares" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Pilares</a>
+            <a href="#arsenal" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">O Arsenal</a>
+            <a href="#fraternidade" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Fraternidade</a>
+            <a href="#tropa" class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">A Tropa</a>
         </div>
     </header>
 
-    <!-- ========================================= -->
-    <!-- HERO SECTION DE IMPACTO EXTREMO           -->
-    <!-- ========================================= -->
-    <section class="relative min-h-screen flex flex-col justify-center items-center text-center pt-20 bg-gradient-to-b from-brand-dark to-black overflow-hidden border-b border-zinc-900">
-        <!-- Background Imagem Sutil (Desfocada/Grayscale) -->
-        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-10 grayscale mix-blend-luminosity scale-105" alt="Background">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/80 to-black pointer-events-none"></div>
+    <!-- 1ª Seção - Hero + Formulário -->
+    <section id="inicio" class="relative md:sticky top-0 min-h-[100svh] flex items-center pt-28 pb-10 md:pt-32 md:pb-12 overflow-hidden bg-legiao-black z-0">
         
-        <div class="relative z-10 max-w-[1400px] mx-auto px-4 py-12 w-full flex flex-col items-center">
-            
-            <!-- Etiqueta Topo -->
-            <div data-aos="fade-down" class="inline-flex items-center gap-2 bg-brand-lightMil/60 border border-brand-lightMil px-4 py-1.5 text-tactical text-[10px] md:text-xs uppercase tracking-widest slanted mb-8 md:mb-12 shadow-[0_0_15px_rgba(228,232,202,0.1)]">
-                <i data-lucide="crosshair" class="w-4 h-4 text-brand-brYellow animate-pulse"></i>
-                Operação Legado Fundadores
-            </div>
-            
-            <!-- HEADLINE GIGANTE (Exibida ao abrir a porta) -->
-            <h1 class="font-display-custom text-[12vw] sm:text-[9vw] lg:text-[130px] leading-[0.9] text-white tracking-tighter mb-8 w-full" data-aos="zoom-in" data-aos-duration="1200">
-                NÃO ACEITE A<br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-brGreen via-brand-brYellow to-brand-brGreen text-glow">MEDIOCRIDADE</span>
-            </h1>
-            
-            <!-- Subline Impactante -->
-            <p class="text-zinc-400 text-sm sm:text-base md:text-2xl leading-relaxed max-w-4xl mx-auto font-light" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                Vista o que você defende. O uniforme e o estandarte daqueles que vivem sob o código inegociável de retidão: <span class="text-white font-semibold tracking-wider">SAÚDE, FAMÍLIA, TRABALHO E HONRA.</span>
-            </p>
+        <!-- Fundo Cinemático e Dark -->
+        <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.25">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1920&auto=format&fit=crop" 
+                 alt="Guerreiro Treinando" 
+                 class="w-full h-full object-cover animate-slow-zoom opacity-30 grayscale mix-blend-overlay">
+        </div>
+        
+        <!-- Overlay Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-legiao-black via-legiao-black/90 to-transparent z-0"></div>
+        
+        <!-- Blobs dinâmicos -->
+        <div class="absolute top-1/4 -left-10 w-96 h-96 bg-legiao-green rounded-full mix-blend-screen filter blur-[120px] opacity-50 animate-blob z-0 pointer-events-none"></div>
 
-            <!-- Ações -->
-            <div class="flex flex-col sm:flex-row gap-5 mt-12 md:mt-16 w-full justify-center px-4" data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                <a href="#arsenal" class="bg-tactical text-black font-display-custom text-sm md:text-base px-10 py-5 text-center hover:bg-white transition-all duration-300 slanted shadow-[0_0_20px_rgba(228,232,202,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
-                    Ver o Arsenal Operacional
-                </a>
-                <a href="#manifesto" class="border border-white/20 hover:border-tactical text-white font-display-custom text-sm md:text-base px-10 py-5 text-center transition-all duration-300 slanted bg-black/40 backdrop-blur-sm">
-                    Ler o Manifesto
-                </a>
-            </div>
+        <!-- Conteúdo -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+                
+                <!-- Text -->
+                <div class="lg:col-span-7 text-center md:text-left reveal-left mt-8 md:mt-0">
+                    <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-legiao-gold/10 border border-legiao-gold/30 text-legiao-gold font-bold text-[10px] sm:text-xs md:text-sm tracking-widest uppercase mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(198,166,100,0.2)]">
+                        <span class="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-legiao-gold opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-legiao-gold"></span>
+                        </span>
+                        Convocação Oficial Lote 01
+                    </div>
+                    
+                    <h1 class="font-display text-[2.5rem] sm:text-4xl md:text-5xl lg:text-[5rem] font-bold uppercase tracking-tight mb-4 md:mb-6 leading-[1.05]">
+                        Forjando o legado do <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">homem comum.</span>
+                    </h1>
+                    
+                    <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 md:mb-10 font-normal text-gray-300 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+                        Mais que uma marca, um pacto. O uniforme daqueles que defendem os pilares da <span class="text-white font-bold">Saúde, Família, Trabalho e Honra.</span>
+                    </p>
+                    
+                    <!-- Benefícios rápidos -->
+                    <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 hidden md:flex">
+                        <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
+                                <i class="ph-bold ph-shield-check text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Proteção</span>
+                        </div>
+                        <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
+                                <i class="ph-bold ph-hammer text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Trabalho Duro</span>
+                        </div>
+                        <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
+                                <i class="ph-bold ph-users-three text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Irmandade</span>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50" data-aos="fade-in" data-aos-delay="1000" data-aos-duration="1000">
-                <span class="text-[9px] uppercase tracking-widest text-tactical">Desça para inspecionar</span>
-                <i data-lucide="chevron-down" class="w-5 h-5 text-tactical animate-bounce"></i>
+                <!-- Form Card -->
+                <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full max-w-md mx-auto">
+                    <div id="alistamento" class="scroll-mt-32 glass-card rounded-3xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.9)] w-full relative overflow-hidden group border-t border-white/10 hover:border-legiao-gold/30 transition-colors duration-500">
+                        <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-legiao-gold/10 to-transparent rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[shine_4s_infinite] pointer-events-none"></div>
+
+                        <div class="text-center mb-6 sm:mb-8 relative z-10">
+                            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase mb-2 tracking-tight group-hover:text-legiao-gold transition-colors">Alistamento VIP</h2>
+                            <p class="text-xs sm:text-sm text-gray-400 font-medium">Os 100 primeiros garantem acesso exclusivo ao arsenal Lendário.</p>
+                        </div>
+
+                        <form class="space-y-4 sm:space-y-5 relative z-10">
+                            <div class="transition-all">
+                                <label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase mb-1 sm:mb-2 tracking-wider">Nome Completo</label>
+                                <input type="text" placeholder="Como devemos chamá-lo?" class="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-xl bg-black/80 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-legiao-gold transition-all shadow-inner text-sm">
+                            </div>
+                            <div class="transition-all">
+                                <label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase mb-1 sm:mb-2 tracking-wider">E-mail</label>
+                                <input type="email" placeholder="seu@email.com" class="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-xl bg-black/80 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-legiao-gold transition-all shadow-inner text-sm">
+                            </div>
+                            <div class="transition-all">
+                                <label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase mb-1 sm:mb-2 tracking-wider">WhatsApp</label>
+                                <input type="tel" placeholder="(00) 00000-0000" class="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-xl bg-black/80 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-legiao-gold transition-all shadow-inner text-sm">
+                            </div>
+                            <div class="pt-2 sm:pt-4">
+                                <button type="button" class="font-display btn-shine w-full bg-legiao-gold text-legiao-black hover:bg-legiao-goldHover font-bold uppercase tracking-widest py-4 sm:py-4.5 rounded-xl text-base sm:text-lg transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(198,166,100,0.4)] flex justify-center items-center gap-2">
+                                    Alistar-me Agora
+                                    <i class="ph-bold ph-arrow-right text-lg sm:text-xl"></i>
+                                </button>
+                            </div>
+                            <p class="text-[10px] sm:text-xs text-center text-gray-500 mt-4 flex items-center justify-center gap-1.5 font-medium">
+                                <i class="ph-fill ph-lock-key text-legiao-gold text-sm sm:text-base"></i> Seus dados estão protegidos na nossa base.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
-    <!-- ========================================= -->
 
-    <!-- Marquee Rotativo de Valores -->
-    <div class="bg-brand-military py-4 border-y border-brand-cream/15 overflow-hidden">
-        <div class="animate-marquee whitespace-nowrap flex items-center gap-12">
-            <span class="font-display-custom text-sm text-tactical tracking-[0.4em] flex items-center gap-2">
-                SAÚDE <i data-lucide="shield" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-white tracking-[0.4em] flex items-center gap-2">
-                FAMÍLIA <i data-lucide="heart" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-tactical tracking-[0.4em] flex items-center gap-2">
-                TRABALHO <i data-lucide="hammer" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-white tracking-[0.4em] flex items-center gap-2">
-                HONRA <i data-lucide="flag" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <!-- Duplicate for infinite effect -->
-            <span class="font-display-custom text-sm text-tactical tracking-[0.4em] flex items-center gap-2">
-                SAÚDE <i data-lucide="shield" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-white tracking-[0.4em] flex items-center gap-2">
-                FAMÍLIA <i data-lucide="heart" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-tactical tracking-[0.4em] flex items-center gap-2">
-                TRABALHO <i data-lucide="hammer" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-white tracking-[0.4em] flex items-center gap-2">
-                HONRA <i data-lucide="flag" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <!-- Duplicate again -->
-            <span class="font-display-custom text-sm text-tactical tracking-[0.4em] flex items-center gap-2">
-                SAÚDE <i data-lucide="shield" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-white tracking-[0.4em] flex items-center gap-2">
-                FAMÍLIA <i data-lucide="heart" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-tactical tracking-[0.4em] flex items-center gap-2">
-                TRABALHO <i data-lucide="hammer" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-            <span class="font-display-custom text-sm text-white tracking-[0.4em] flex items-center gap-2">
-                HONRA <i data-lucide="flag" class="w-4 h-4 text-brand-brYellow inline"></i>
-            </span>
-        </div>
-    </div>
+    <!-- Wrapper Parallax Cortina -->
+    <div class="relative z-10 bg-legiao-dark shadow-[0_-20px_50px_rgba(0,0,0,0.9)] rounded-t-3xl md:rounded-t-[2.5rem] lg:rounded-t-[4rem] overflow-hidden">
 
-    <!-- Seção: Manifesto / Filosofia de Vida -->
-    <section id="manifesto" class="py-24 bg-brand-dark border-b border-zinc-900">
-        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            
-            <!-- Video Conceitual placeholder / Lado de bastidores -->
-            <div class="relative group" data-aos="fade-right">
-                <div class="absolute inset-0 bg-brand-brGreen opacity-10 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                <div class="relative bg-zinc-950 border border-zinc-800 p-3">
-                    <div class="relative aspect-video overflow-hidden bg-black flex items-center justify-center">
-                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale contrast-125 opacity-40" alt="Treino Força">
-                        <!-- Play Button -->
-                        <button onclick="playManifestoVideo()" class="relative z-10 w-16 h-16 bg-tactical rounded-full flex items-center justify-center text-black hover:bg-brand-brGreen hover:text-white hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(0,156,59,0.3)]">
-                            <i data-lucide="play" class="w-6 h-6 fill-current"></i>
-                        </button>
-                    </div>
-                </div>
-                <p class="text-zinc-500 text-[10px] mt-3 uppercase tracking-wider text-center">Assista ao Manifesto: "A Batalha de Todo Dia"</p>
+        <!-- 2ª Seção - A Oferta (Missão) -->
+        <section id="missao" class="py-16 md:py-24 relative overflow-hidden">
+            <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.2">
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1920&auto=format&fit=crop" 
+                     alt="Homem forjando ou trabalhando" 
+                     class="w-full h-full object-cover animate-slow-zoom opacity-20 grayscale mix-blend-luminosity">
             </div>
+            <div class="absolute inset-0 bg-gradient-to-b from-legiao-dark via-legiao-dark/80 to-legiao-dark z-0"></div>
 
-            <!-- Narrativa Convincente -->
-            <div class="space-y-6" data-aos="fade-left">
-                <div class="text-brand-brYellow font-display-custom text-sm tracking-wider uppercase">// A Batalha Começa de Manhã</div>
-                <h2 class="font-display-custom text-4xl md:text-5xl text-white">
-                    SE VOCÊ É O LÍDER DE SUA CASA, POR QUE AGE COMO O ESTAGIÁRIO?
+            <div class="max-w-4xl mx-auto px-4 relative z-20 text-center">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase text-white mb-4 sm:mb-6 leading-tight tracking-tight reveal">
+                    A <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">Legião Pátria</span> está pronta.
                 </h2>
-                <div class="w-16 h-0.5 bg-brand-brYellow"></div>
+                <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-10 sm:mb-14 font-medium max-w-2xl mx-auto reveal delay-100">
+                    O Lote 01, edição Fundadores, está a caminho. Bonés, camisetas e adesivos que carregam a força de quem não recua.
+                </p>
+
+                <!-- Ticket de Oferta (O Arsenal Limitado) -->
+                <div class="bg-gradient-to-br from-[#1a1f16] to-[#0a0c08] rounded-[2rem] sm:rounded-[2.5rem] p-1 md:p-2 shadow-[0_30px_60px_rgba(0,0,0,0.9)] mx-auto max-w-3xl transform hover:-translate-y-2 sm:hover:-translate-y-3 transition-all duration-500 reveal delay-200 group border border-legiao-greenLight">
+                    <div class="border border-white/5 group-hover:border-legiao-gold/30 rounded-[1.8rem] sm:rounded-[2.3rem] p-6 sm:p-8 md:p-14 relative overflow-hidden transition-colors duration-500 bg-legiao-black/90 backdrop-blur-md">
+                        
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[150%] h-[150%] bg-legiao-green/20 filter blur-[100px] rounded-full pointer-events-none group-hover:bg-legiao-gold/10 transition-colors duration-700"></div>
+
+                        <div class="absolute top-0 right-0 bg-legiao-gold text-legiao-black text-[9px] sm:text-[10px] md:text-xs font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-bl-2xl sm:rounded-bl-3xl uppercase tracking-widest shadow-md font-display">
+                            Quantidade Extremamente Limitada
+                        </div>
+                        
+                        <h3 class="font-display text-2xl sm:text-3xl md:text-4xl font-bold uppercase text-legiao-gold mb-2 sm:mb-3 tracking-tight drop-shadow-md group-hover:scale-105 transition-transform duration-500 mt-2 sm:mt-0">KIT LEGIONÁRIO</h3>
+                        <p class="text-sm sm:text-lg md:text-xl font-bold text-white mb-8 sm:mb-10 tracking-wide drop-shadow-sm">Acesso Antecipado + Edição Fundadores</p>
+                        
+                        <ul class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-10 text-xs sm:text-sm font-bold text-gray-300 mb-8 sm:mb-10 uppercase tracking-wider">
+                            <li class="flex items-center gap-2 sm:gap-3 group/icon hover:text-legiao-gold transition-colors">
+                                <i class="ph-bold ph-shield-star text-legiao-gold text-xl sm:text-2xl group-hover/icon:scale-110 transition-transform"></i>
+                                Patch Numerado
+                            </li>
+                            <li class="flex items-center gap-2 sm:gap-3 group/icon hover:text-legiao-gold transition-colors">
+                                <i class="ph-bold ph-clock-countdown text-legiao-gold text-xl sm:text-2xl group-hover/icon:scale-110 transition-transform"></i>
+                                Acesso 24h Antes
+                            </li>
+                            <li class="flex items-center gap-2 sm:gap-3 group/icon hover:text-legiao-gold transition-colors">
+                                <i class="ph-bold ph-package text-legiao-gold text-xl sm:text-2xl group-hover/icon:scale-110 transition-transform"></i>
+                                Unboxing Premium
+                            </li>
+                        </ul>
+
+                        <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display btn-shine bg-legiao-gold hover:bg-legiao-goldHover text-legiao-black px-8 sm:px-10 py-4 sm:py-5 rounded-full font-bold uppercase tracking-widest text-base sm:text-lg w-full md:w-auto inline-flex items-center justify-center gap-2 sm:gap-3 transition-transform transform hover:scale-105 shadow-[0_0_30px_rgba(198,166,100,0.3)]">
+                            Entrar na Lista VIP <i class="ph-bold ph-crosshair text-2xl sm:text-3xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3ª Seção - Diferenciais (Os 4 Pilares) -->
+        <section id="pilares" class="py-16 md:py-24 bg-legiao-black relative overflow-hidden border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+                <div class="text-center mb-12 md:mb-20 reveal">
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white drop-shadow-md">
+                        Os Nossos <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600">Pilares</span>
+                    </h2>
+                    <p class="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">Em um mundo que pede mais, a resposta vem de dentro. O que não é inegociável, não é leal.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
+                    
+                    <!-- Pilar 1: Saúde -->
+                    <div class="bg-[#0F0F0F] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-[#141414] hover:border-legiao-gold/30 transition-all duration-500 reveal-left delay-100 group shadow-xl">
+                        <div class="w-14 h-14 rounded-xl bg-legiao-green/30 flex items-center justify-center border border-legiao-green group-hover:scale-110 transition-transform mb-6">
+                            <i class="ph-bold ph-heartbeat text-legiao-gold text-3xl"></i>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-tight mb-3">Saúde</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-4">A Forja</p>
+                        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">Não apenas física, mas mental e espiritual. O corpo é o templo, a mente é o quartel-general. Treine não pelo espelho, mas pela resiliência. Corpo forte, mente sã: a base do Guardião.</p>
+                    </div>
+
+                    <!-- Pilar 2: Família -->
+                    <div class="bg-[#0F0F0F] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-[#141414] hover:border-legiao-gold/30 transition-all duration-500 reveal-right delay-200 group shadow-xl">
+                        <div class="w-14 h-14 rounded-xl bg-legiao-green/30 flex items-center justify-center border border-legiao-green group-hover:scale-110 transition-transform mb-6">
+                            <i class="ph-bold ph-house-line text-legiao-gold text-3xl"></i>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-tight mb-3">Família</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-4">O Escudo</p>
+                        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">O alicerce de tudo. A primeira célula do exército patriota, onde os valores são ensinados e cultivados. Proteja o que é sagrado. Família unida, fortaleza invencível.</p>
+                    </div>
+
+                    <!-- Pilar 3: Trabalho -->
+                    <div class="bg-[#0F0F0F] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-[#141414] hover:border-legiao-gold/30 transition-all duration-500 reveal-left delay-100 group shadow-xl">
+                        <div class="w-14 h-14 rounded-xl bg-legiao-green/30 flex items-center justify-center border border-legiao-green group-hover:scale-110 transition-transform mb-6">
+                            <i class="ph-bold ph-hammer text-legiao-gold text-3xl"></i>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-tight mb-3">Trabalho</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-4">A Construção</p>
+                        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">A dignidade, o suor honesto que constrói e sustenta. Pelo legado que você deixa e pela liberdade que conquista. Mãos que edificam, honra que prospera.</p>
+                    </div>
+
+                    <!-- Pilar 4: Honra -->
+                    <div class="bg-[#0F0F0F] border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-[#141414] hover:border-legiao-gold/30 transition-all duration-500 reveal-right delay-200 group shadow-xl">
+                        <div class="w-14 h-14 rounded-xl bg-legiao-green/30 flex items-center justify-center border border-legiao-green group-hover:scale-110 transition-transform mb-6">
+                            <i class="ph-bold ph-sword text-legiao-gold text-3xl"></i>
+                        </div>
+                        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-tight mb-3">Honra</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-4">O Código</p>
+                        <p class="text-gray-400 text-sm sm:text-base leading-relaxed">Integridade inabalável, respeito, lealdade e a coragem de fazer o que é certo, mesmo quando ninguém está olhando. A Honra é nosso escudo, a verdade nossa bandeira.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4ª Seção - Estrutura / Arsenal (Produtos) -->
+        <section id="arsenal" class="py-16 md:py-28 bg-legiao-dark relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+                <div class="text-center mb-12 md:mb-20 reveal">
+                    <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white mb-4 drop-shadow-lg">
+                        Conheça o <span class="text-legiao-gold drop-shadow-md">Arsenal</span>
+                    </h2>
+                    <p class="text-base sm:text-lg md:text-xl text-gray-400 font-normal max-w-3xl mx-auto leading-relaxed">Onde quer que a vida te chame, seu uniforme está pronto.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Linha Alistamento -->
+                    <div class="p-8 rounded-3xl bg-[#0A0A0A] border border-white/5 hover:-translate-y-2 hover:border-legiao-gold/50 transition-all duration-500 group reveal delay-100 shadow-2xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-green/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <h3 class="font-display text-2xl font-bold text-white uppercase tracking-wide mb-1">Alistamento</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-6">O Básico Essencial</p>
+                        <p class="text-sm text-gray-400 mb-6">O primeiro passo na Legião. Foco em durabilidade e no sentimento de pertencimento para a jornada diária.</p>
+                        <ul class="text-sm text-gray-300 space-y-3 font-medium">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Camisetas "Recruta"</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Regatas de Treino</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Boné "Base"</li>
+                        </ul>
+                    </div>
+
+                    <!-- Linha Combate -->
+                    <div class="p-8 rounded-3xl bg-[#0F0F0F] border-2 border-legiao-gold/20 hover:-translate-y-4 hover:border-legiao-gold transition-all duration-500 group reveal delay-200 shadow-[0_0_30px_rgba(198,166,100,0.1)] relative overflow-hidden md:-mt-6">
+                        <div class="absolute top-0 right-0 bg-legiao-gold text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">Mais Desejado</div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-gold/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <h3 class="font-display text-3xl font-bold text-white uppercase tracking-wide mb-1">Combate</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-6">Performance Tática</p>
+                        <p class="text-sm text-gray-400 mb-6">O equipamento de batalha projetado para aguentar a rotina intensa de treinos. Tecnologia, conforto e funcionalidade.</p>
+                        <ul class="text-sm text-gray-300 space-y-3 font-medium">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> T-Shirt Dry-Fit Laser</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Bermuda Blindada</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Boné Trucker Operacional</li>
+                        </ul>
+                    </div>
+
+                    <!-- Linha Lendária -->
+                    <div class="p-8 rounded-3xl bg-[#0A0A0A] border border-white/5 hover:-translate-y-2 hover:border-legiao-gold/50 transition-all duration-500 group reveal delay-300 shadow-2xl relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-green/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <h3 class="font-display text-2xl font-bold text-white uppercase tracking-wide mb-1">Lendária</h3>
+                        <p class="text-legiao-gold text-xs font-bold uppercase tracking-widest mb-6">Exclusividade e Status</p>
+                        <p class="text-sm text-gray-400 mb-6">O uniforme de gala, a armadura do líder. Foco absoluto em exclusividade, materiais nobres e edições numeradas.</p>
+                        <ul class="text-sm text-gray-300 space-y-3 font-medium">
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Camiseta Algodão Pima</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Jaqueta Corta-Vento</li>
+                            <li class="flex items-center gap-2"><i class="ph-fill ph-caret-right text-legiao-gold"></i> Boné Americano Premium</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5ª Seção - A Fraternidade (App/Digital) -->
+        <section id="fraternidade" class="bg-[#EBEBEB] text-[#0A0A0A] py-16 md:py-32 overflow-hidden relative">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#EBEBEB] to-[#D6D6D6] z-0"></div>
+            
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-gray-400 rounded-full mix-blend-multiply filter blur-[100px] opacity-20 animate-pulse-slow pointer-events-none z-0"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-24">
+                    
+                    <!-- Left: Text content -->
+                    <div class="flex-1 md:pr-12 reveal-left text-center md:text-left">
+                        <p class="text-legiao-green font-bold text-xs sm:text-sm tracking-widest uppercase mb-3">Comunidade Digital</p>
+                        <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-bold uppercase tracking-tight mb-6 md:mb-8 leading-[1.05] text-[#0A0A0A]">
+                            Acesso à <span class="underline decoration-legiao-green decoration-4 md:decoration-8 underline-offset-4">Fraternidade.</span>
+                        </h2>
+                        <p class="text-gray-700 text-lg mb-8 font-medium">Alinhe sua vida pessoal com a sua ambição. Uma rede exclusiva para homens que operam baseados nos 4 Pilares Inegociáveis.</p>
+                        
+                        <ul class="space-y-4 sm:space-y-6 mb-10 md:mb-12 text-base sm:text-lg font-bold text-gray-800 text-left">
+                            <li class="flex items-center gap-4 group cursor-default hover:translate-x-2 transition-transform">
+                                <div class="w-8 h-8 rounded-full bg-legiao-green/10 border border-legiao-green/20 flex items-center justify-center shrink-0 group-hover:bg-legiao-green transition-colors">
+                                    <i class="ph-bold ph-shield text-legiao-green group-hover:text-white text-lg"></i>
+                                </div>
+                                <span>A Academia de Guerra: Frameworks de liderança.</span>
+                            </li>
+                            <li class="flex items-center gap-4 group cursor-default hover:translate-x-2 transition-transform">
+                                <div class="w-8 h-8 rounded-full bg-legiao-green/10 border border-legiao-green/20 flex items-center justify-center shrink-0 group-hover:bg-legiao-green transition-colors">
+                                    <i class="ph-bold ph-chart-line-up text-legiao-green group-hover:text-white text-lg"></i>
+                                </div>
+                                <span>O Arsenal Financeiro: Construção de equity real.</span>
+                            </li>
+                            <li class="flex items-center gap-4 group cursor-default hover:translate-x-2 transition-transform">
+                                <div class="w-8 h-8 rounded-full bg-legiao-green/10 border border-legiao-green/20 flex items-center justify-center shrink-0 group-hover:bg-legiao-green transition-colors">
+                                    <i class="ph-bold ph-users text-legiao-green group-hover:text-white text-lg"></i>
+                                </div>
+                                <span>A Rede: Cercado de homens com o mesmo código.</span>
+                            </li>
+                        </ul>
+
+                        <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display btn-shine text-lg sm:text-xl font-bold text-white uppercase bg-legiao-green hover:bg-legiao-greenLight inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-xl shadow-lg transition-transform transform hover:scale-105">
+                            Quero me alistar <i class="ph-bold ph-arrow-right text-xl sm:text-2xl"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Right: Phones Mockup (E-book / Portal) -->
+                    <div class="flex-1 relative flex justify-center md:justify-end reveal-right mt-6 md:mt-0">
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#D4AF37] rounded-[4rem] rotate-6 z-0 shadow-lg transition-transform duration-700 hover:rotate-12 hover:scale-105 opacity-80"></div>
+                        
+                        <!-- Celular Principal -->
+                        <div class="relative w-[260px] h-[540px] sm:w-[300px] sm:h-[620px] phone-mockup z-20 animate-float shadow-2xl bg-black transform origin-top">
+                            <!-- Notch -->
+                            <div class="absolute top-0 inset-x-0 h-6 sm:h-7 flex justify-center z-30">
+                                <div class="w-28 sm:w-36 h-6 sm:h-7 bg-[#050505] rounded-b-2xl sm:rounded-b-3xl"></div>
+                            </div>
+                            <!-- Tela -->
+                            <div class="absolute inset-0 bg-[#0A0A0A] z-20 flex flex-col text-white">
+                                <div class="h-40 bg-legiao-green border-b border-white/10 flex flex-col justify-end pb-4 px-6 relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-black/40"></div>
+                                    <span class="relative z-10 font-display font-bold text-2xl uppercase">Portal VIP</span>
+                                    <span class="relative z-10 text-xs text-gray-300">A Fraternidade</span>
+                                </div>
+                                <div class="p-5 space-y-4 overflow-hidden flex-1 bg-[#050505]">
+                                    <h3 class="font-bold text-sm text-gray-400 uppercase tracking-widest mb-2">Módulos Liberados</h3>
+                                    
+                                    <div class="flex items-center gap-4 bg-[#141414] p-4 rounded-xl border border-white/5">
+                                        <div class="w-10 h-10 bg-legiao-gold/20 rounded-lg flex items-center justify-center shrink-0"><i class="ph-fill ph-book-open text-legiao-gold text-xl"></i></div>
+                                        <div><p class="font-bold text-sm">O Código do Guardião</p><p class="text-xs text-gray-500 mt-1">E-book Completo</p></div>
+                                    </div>
+
+                                    <div class="flex items-center gap-4 bg-[#141414] p-4 rounded-xl border border-white/5">
+                                        <div class="w-10 h-10 bg-legiao-green/30 rounded-lg flex items-center justify-center shrink-0"><i class="ph-fill ph-sword text-legiao-greenLight text-xl"></i></div>
+                                        <div><p class="font-bold text-sm">Academia de Guerra</p><p class="text-xs text-gray-500 mt-1">Aula 01: Delegação Extrema</p></div>
+                                    </div>
+
+                                    <div class="flex items-center gap-4 bg-[#141414] p-4 rounded-xl border border-white/5">
+                                        <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center shrink-0"><i class="ph-fill ph-users-three text-blue-400 text-xl"></i></div>
+                                        <div><p class="font-bold text-sm">A Rede (Comunidade)</p><p class="text-xs text-gray-500 mt-1">3 novas mensagens</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6ª Seção - A Tropa (Social Proof) -->
+        <section id="tropa" class="py-16 md:py-32 bg-legiao-black text-white relative overflow-hidden border-t border-white/5">
+            <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.25">
+                <img src="https://images.unsplash.com/photo-1526506190296-613d9657ce24?q=80&w=1920&auto=format&fit=crop" 
+                     alt="Tropa Fundo" 
+                     class="w-full h-full object-cover animate-slow-zoom opacity-10 grayscale mix-blend-luminosity">
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-legiao-black via-legiao-black/90 to-transparent z-0"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
+                <p class="text-legiao-gold font-bold text-xs sm:text-sm tracking-widest uppercase mb-3 reveal">Comunidade</p>
+                <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem] font-bold uppercase tracking-tight text-white mb-4 sm:mb-6 reveal leading-[1.05]">
+                    QUEM VESTE,<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">RECONHECE O PESO.</span>
+                </h2>
+                <p class="text-base sm:text-lg text-gray-400 mb-12 md:mb-20 font-medium reveal delay-100 max-w-2xl mx-auto">
+                    Não vendemos apenas roupa. Formamos uma legião de cidadãos exemplares. Junte-se à tropa.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-16 md:mb-24">
+                    <!-- Tropa Item 1 -->
+                    <div class="rounded-3xl overflow-hidden aspect-[4/5] relative group cursor-pointer shadow-2xl reveal delay-100 border border-white/10 hover:border-legiao-gold transition-colors mx-auto w-full max-w-[320px] sm:max-w-none">
+                        <!-- Simulated Video/Image -->
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" alt="Treino" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-left">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="ph-fill ph-instagram-logo text-white text-2xl"></i>
+                                <span class="text-white font-bold text-xs uppercase tracking-wider">@legiaoleal_oficial</span>
+                            </div>
+                            <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                                "TREINE. Não pelo espelho, mas pela resiliência. O corpo é o templo. A mente, o campo de batalha." #LegiaoLeal
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tropa Item 2 -->
+                    <div class="rounded-3xl overflow-hidden aspect-[4/5] relative group cursor-pointer shadow-2xl reveal delay-200 border border-white/10 hover:border-legiao-gold transition-colors mx-auto w-full max-w-[320px] sm:max-w-none md:-translate-y-8">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=600&auto=format&fit=crop" alt="Trabalho" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-left">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="ph-fill ph-instagram-logo text-white text-2xl"></i>
+                                <span class="text-white font-bold text-xs uppercase tracking-wider">@legiaoleal_oficial</span>
+                            </div>
+                            <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                                "TRABALHE. Pelo suor que edifica. Pela liberdade que você conquista para sua família." #Legado
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Tropa Item 3 -->
+                    <div class="rounded-3xl overflow-hidden aspect-[4/5] relative group cursor-pointer shadow-2xl reveal delay-300 border border-white/10 hover:border-legiao-gold transition-colors mx-auto w-full max-w-[320px] sm:max-w-none hidden sm:block md:block">
+                        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=600&auto=format&fit=crop" alt="Família/Irmandade" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-left">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="ph-fill ph-instagram-logo text-white text-2xl"></i>
+                                <span class="text-white font-bold text-xs uppercase tracking-wider">@legiaoleal_oficial</span>
+                            </div>
+                            <p class="text-gray-300 text-sm font-medium leading-relaxed">
+                                "HONRE. Suas raízes. Sua história. A lealdade é um elo. Uma tropa de valores." #Honra
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display btn-shine w-full sm:w-auto bg-legiao-gold hover:bg-legiao-goldHover text-legiao-black px-8 sm:px-14 py-5 sm:py-6 rounded-full font-bold uppercase tracking-widest text-lg sm:text-xl inline-flex items-center justify-center gap-3 transition-transform transform hover:scale-105 shadow-[0_15px_40px_rgba(198,166,100,0.3)] reveal delay-200">
+                    Convoque seus valores <i class="ph-bold ph-flag-banner text-2xl sm:text-3xl"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- 7ª Seção - CTA Final -->
+        <section class="py-16 md:py-32 bg-legiao-green text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-0 pointer-events-none"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-legiao-gold rounded-full mix-blend-overlay filter blur-[150px] opacity-20 animate-pulse-slow pointer-events-none z-0"></div>
+            
+            <div class="max-w-5xl mx-auto px-4 relative z-20 reveal">
+                <h2 class="font-display text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] font-bold uppercase text-white mb-6 md:mb-8 leading-tight md:leading-[1] tracking-tight drop-shadow-lg">
+                    O Brasil não precisa de mais promessas,<br>
+                    <span class="text-legiao-gold drop-shadow-md">precisa de mais pilares.</span>
+                </h2>
+                <p class="text-gray-300 font-medium mb-10 md:mb-14 text-base sm:text-xl max-w-3xl mx-auto drop-shadow-sm">Aliste-se na Legião Leal. A Força do Brasil está em Nossos Valores.</p>
                 
-                <p class="text-zinc-300 text-sm leading-relaxed">
-                    O mercado te ensinou a crescer e performar fora. Mas o que acontece quando abrimos a porta da sua casa? Você encontra um homem esgotado, acima do peso, de olhos vidrados no celular e terceirizando a proteção e os valores de sua própria família.
-                </p>
-                <p class="text-zinc-400 text-sm leading-relaxed italic border-l-2 border-tactical pl-4">
-                    "A Legião Leal nasceu para resgatar os pilares fundamentais. Nossos tecidos, costuras e cortes imponentes servem como uma armadura diária. Um lembrete físico no seu peito de que você é o escudo da sua casa."
-                </p>
+                <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display w-full sm:w-auto bg-legiao-black hover:bg-[#0A0A0A] text-white border border-legiao-gold/30 hover:border-legiao-gold px-8 md:px-14 py-5 md:py-7 rounded-full font-bold uppercase tracking-widest text-base sm:text-xl md:text-2xl inline-flex items-center justify-center gap-3 md:gap-4 transition-all transform hover:scale-105 sm:hover:-translate-y-2 shadow-2xl">
+                    Reivindicar meu lugar <i class="ph-bold ph-arrow-up text-2xl md:text-3xl text-legiao-gold"></i>
+                </a>
+            </div>
+        </section>
 
-                <div class="pt-4">
-                    <a href="#formulario" class="inline-flex items-center gap-3 text-tactical hover:text-white font-display-custom text-sm tracking-wider uppercase transition-colors">
-                        Aliste-se à Fraternidade <i data-lucide="arrow-right" class="w-4 h-4 text-brand-brYellow"></i>
-                    </a>
+        <!-- Footer -->
+        <footer class="bg-[#050505] text-gray-500 py-10 md:py-16 text-center text-sm border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+                <a href="#inicio" class="mb-8 flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Legião Leal Logo" class="h-12 sm:h-16 w-auto">
+                </a>
+                <p class="mb-2 font-bold text-gray-400 uppercase tracking-widest text-[10px] sm:text-xs">SAÚDE • FAMÍLIA • TRABALHO • HONRA</p>
+                <p class="mb-6 font-medium text-[10px] sm:text-xs">O exército de valores que reconstrói a nação. © 2026 Legião Leal.</p>
+                <div class="flex justify-center gap-4 sm:gap-8 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
+                    <a href="#" class="hover:text-legiao-gold transition-colors">Instagram</a>
+                    <span class="text-gray-800">|</span>
+                    <a href="#" class="hover:text-legiao-gold transition-colors">Termos de Uso</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- Seção: O Arsenal / Mix de Produtos -->
-    <section id="arsenal" class="py-24 bg-black">
-        <div class="max-w-[1400px] mx-auto px-6">
-            
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
-                <div>
-                    <span class="text-brand-brYellow font-display-custom text-sm tracking-widest block mb-2">// Equipamento de Combate</span>
-                    <h2 class="font-display-custom text-4xl md:text-6xl text-white">NOSSAS LINHAS OPERACIONAIS</h2>
-                </div>
-                <p class="text-zinc-400 text-sm max-w-sm font-light">
-                    Dividido cirurgicamente em três níveis de preparação e status para atender cada missão na sua rotina diária.
-                </p>
-            </div>
+    </div> <!-- Fim do Wrapper Parallax -->
 
-            <!-- Grid de Linhas -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Linha 1: ALISTAMENTO -->
-                <div class="bg-brand-dark border border-zinc-800/60 hover:border-tactical p-6 flex flex-col justify-between transition-all duration-300 group" data-aos="fade-up" data-aos-delay="100">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-zinc-500 font-display-custom text-xs">NÍVEL 01</span>
-                            <span class="text-tactical font-semibold text-xs">$ - ACESSÍVEL</span>
-                        </div>
-                        <h3 class="font-display-custom text-2xl text-white group-hover:text-brand-brYellow transition-colors">LINHA ALISTAMENTO</h3>
-                        <p class="text-zinc-400 text-xs leading-relaxed">
-                            O uniforme essencial para quem está iniciando a jornada. Desenvolvida com foco em durabilidade e no sentimento de pertencer à tropa.
-                        </p>
-                        <ul class="space-y-2 text-zinc-500 text-[11px] uppercase tracking-wider pt-2">
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Camiseta Recruta Algodão</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Regata Treino Diário</li>
-                            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Boné "Base" Discreto</li>
-                        </ul>
-                    </div>
-                    <div class="pt-8">
-                        <a href="#formulario" class="block w-full text-center bg-zinc-900 hover:bg-tactical hover:text-black text-white font-display-custom text-xs py-3 transition-colors">
-                            Reservar Lote Fundador
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Linha 2: COMBATE (Destaque Principal) -->
-                <div class="bg-brand-military border-2 border-brand-brYellow p-6 flex flex-col justify-between relative transition-all duration-300 group shadow-[0_0_30px_rgba(255,223,0,0.1)] hover:shadow-[0_0_40px_rgba(0,156,59,0.3)]" data-aos="fade-up" data-aos-delay="200">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-brGreen text-white font-display-custom text-[10px] px-3 py-0.5 tracking-widest uppercase">
-                        Mais Procurada
-                    </div>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-tactical font-display-custom text-xs font-bold">NÍVEL 02</span>
-                            <span class="text-tactical font-bold text-xs">$$ - MÉDIO</span>
-                        </div>
-                        <h3 class="font-display-custom text-2xl text-white group-hover:text-brand-brYellow transition-colors">LINHA COMBATE</h3>
-                        <p class="text-zinc-300 text-xs leading-relaxed">
-                            O equipamento de batalha real. Projetado para aguentar a rotina intensa de treinos pesados, com tecnologia, conforto e modelagem slim fit.
-                        </p>
-                        <ul class="space-y-2 text-zinc-300 text-[11px] uppercase tracking-wider pt-2">
-                            <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Camiseta Performance Tática</li>
-                            <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Bermuda de Treino Blindada</li>
-                            <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Rashguard "Missão" Compressão</li>
-                            <li class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-brYellow"></i> Boné Trucker Operacional</li>
-                        </ul>
-                    </div>
-                    <div class="pt-8">
-                        <a href="#formulario" class="block w-full text-center bg-brand-brGreen hover:bg-brand-brYellow text-white hover:text-black font-display-custom text-xs py-3 transition-colors">
-                            Reservar Combate
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Linha 3: LENDÁRIA -->
-                <div class="bg-brand-dark border border-zinc-800/60 hover:border-tactical p-6 flex flex-col justify-between transition-all duration-300 group" data-aos="fade-up" data-aos-delay="300">
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-zinc-500 font-display-custom text-xs">NÍVEL 03</span>
-                            <span class="text-tactical font-semibold text-xs">$$$ - ALTO</span>
-                        </div>
-                        <h3 class="font-display-custom text-2xl text-white group-hover:text-brand-brYellow transition-colors">LINHA LENDÁRIA</h3>
-                        <p class="text-zinc-400 text-xs leading-relaxed">
-                            O ápice. O uniforme de gala e armadura do líder. Foco absoluto em exclusividade, tecidos nobres importados e edições limitadas numeradas.
-                        </p>
-                        <ul class="space-y-2 text-zinc-500 text-[11px] uppercase tracking-wider pt-2">
-                            <li class="flex items-center gap-2"><i data-lucide="gem" class="w-3.5 h-3.5 text-brand-brYellow"></i> Camiseta Signature Pima/Egípcio</li>
-                            <li class="flex items-center gap-2"><i data-lucide="gem" class="w-3.5 h-3.5 text-brand-brYellow"></i> Jaqueta Corta-Vento Impermeável</li>
-                            <li class="flex items-center gap-2"><i data-lucide="gem" class="w-3.5 h-3.5 text-brand-brYellow"></i> Boné Americano Premium "Glória"</li>
-                        </ul>
-                    </div>
-                    <div class="pt-8">
-                        <a href="#formulario" class="block w-full text-center bg-zinc-900 hover:bg-tactical hover:text-black text-white font-display-custom text-xs py-3 transition-colors">
-                            Acessar Círculo Interno
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Rituais da Tribo / Check-in da Honra -->
-    <section class="py-24 bg-brand-dark border-t border-zinc-900">
-        <div class="max-w-[1400px] mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-                <span class="text-brand-brYellow font-display-custom text-sm tracking-widest block">// Forjados por rituais</span>
-                <h2 class="font-display-custom text-4xl md:text-5xl text-white">NOSSOS RITUAIS DE PERTENCIMENTO</h2>
-                <p class="text-zinc-400 text-sm">
-                    Um movimento forte não tem clientes, ele tem um exército de membros devotos ao mesmo credo moral.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Ritual 1 -->
-                <div class="bg-black p-8 border border-zinc-900 space-y-4 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-military/20 rounded-full blur-2xl group-hover:bg-brand-brGreen/20 transition-colors"></div>
-                    <div class="font-display-custom text-2xl text-transparent bg-clip-text bg-gradient-to-b from-brand-brGreen to-brand-brYellow">01</div>
-                    <h3 class="font-display-custom text-xl text-white">Unboxing Sagrado</h3>
-                    <p class="text-zinc-400 text-xs leading-relaxed">
-                        Sua entrega é tratada como honraria. A caixa tática preta fosca vem selada, exalando um perfume amadeirado exclusivo, contendo o Manifesto Impresso oficial para você ler antes de vestir sua armadura.
-                    </p>
-                </div>
-
-                <!-- Ritual 2 -->
-                <div class="bg-black p-8 border border-zinc-900 space-y-4 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-military/20 rounded-full blur-2xl group-hover:bg-brand-brGreen/20 transition-colors"></div>
-                    <div class="font-display-custom text-2xl text-transparent bg-clip-text bg-gradient-to-b from-brand-brGreen to-brand-brYellow">02</div>
-                    <h3 class="font-display-custom text-xl text-white">#SegundaDoTrabalho</h3>
-                    <p class="text-zinc-400 text-xs leading-relaxed">
-                        Incentivamos a tropa a postar o início de seu expediente de trabalho honesto nas trincheiras usando as peças da marca. Nós repostamos e celebramos a excelência.
-                    </p>
-                </div>
-
-                <!-- Ritual 3 -->
-                <div class="bg-black p-8 border border-zinc-900 space-y-4 relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-brand-military/20 rounded-full blur-2xl group-hover:bg-brand-brGreen/20 transition-colors"></div>
-                    <div class="font-display-custom text-2xl text-transparent bg-clip-text bg-gradient-to-b from-brand-brGreen to-brand-brYellow">03</div>
-                    <h3 class="font-display-custom text-xl text-white">#SextaDaFamília</h3>
-                    <p class="text-zinc-400 text-xs leading-relaxed">
-                        Momento de focar na fortaleza impenetrável: conexões reais com filhos, esposa e mentores. A postagem do fim de semana da tropa vira medalha de honra em nossos canais.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Formulário VIP de Alistamento (Geração de Leads com Gatilhos Táticos) -->
-    <section id="formulario" class="py-24 bg-black relative overflow-hidden">
-        <div class="absolute inset-0 bg-brand-military/20 opacity-30 mix-blend-overlay"></div>
-        <div class="max-w-[800px] mx-auto px-6 relative z-10">
-            
-            <div class="bg-brand-dark border-2 border-brand-cream/15 p-8 md:p-12 space-y-8">
-                <div class="text-center space-y-3">
-                    <div class="inline-flex items-center gap-1.5 text-brand-brYellow text-xs font-bold tracking-widest uppercase">
-                        <i data-lucide="alert-triangle" class="w-4 h-4 text-brand-brYellow animate-bounce"></i>
-                        Acesso Estritamente Limitado
-                    </div>
-                    <h2 class="font-display-custom text-3xl md:text-5xl text-white">REIVINDIQUE SEU ARSENAL LOTE 01</h2>
-                    <p class="text-zinc-400 text-xs md:text-sm">
-                        Cadastre-se na lista de fundadores VIP para receber acesso antecipado às primeiras 300 unidades de bonés táticos, patches e as camisetas exclusivas com o manifesto.
-                    </p>
-                </div>
-
-                <!-- Alerta de Escassez -->
-                <div class="bg-brand-military/60 border border-brand-cream/10 p-4 flex items-start gap-4">
-                    <i data-lucide="shield-alert" class="w-8 h-8 text-tactical shrink-0 mt-0.5"></i>
-                    <div>
-                        <span class="block text-white font-bold text-xs uppercase tracking-wider">Apenas para os Guardiões</span>
-                        <p class="text-zinc-400 text-[11px] leading-relaxed mt-1">
-                            Trabalhamos com drops limitados porque a excelência moral e a produção premium não podem ser massificadas. Não hesite, sua armadura espera por sua decisão.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Formulário Técnico -->
-                <form id="alistamentoForm" class="space-y-4" onsubmit="handleFormSubmit(event)">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-zinc-400 text-[10px] uppercase tracking-wider font-bold">Nome de Guerra</label>
-                            <input type="text" required class="w-full bg-black/60 border border-zinc-800 focus:border-tactical p-3 text-sm text-white outline-none rounded-none placeholder-zinc-700" placeholder="Ex: Sargento Silva">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-zinc-400 text-[10px] uppercase tracking-wider font-bold">E-mail Operacional</label>
-                            <input type="email" required class="w-full bg-black/60 border border-zinc-800 focus:border-tactical p-3 text-sm text-white outline-none rounded-none placeholder-zinc-700" placeholder="seuemail@provedor.com">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="space-y-1">
-                            <label class="text-zinc-400 text-[10px] uppercase tracking-wider font-bold">Contato WhatsApp</label>
-                            <input type="tel" required class="w-full bg-black/60 border border-zinc-800 focus:border-tactical p-3 text-sm text-white outline-none rounded-none placeholder-zinc-700" placeholder="(99) 99999-9999">
-                        </div>
-                        <div class="space-y-1">
-                            <label class="text-zinc-400 text-[10px] uppercase tracking-wider font-bold">Principal Valor a Blindar</label>
-                            <select class="w-full bg-black/60 border border-zinc-800 focus:border-tactical p-3 text-sm text-white outline-none rounded-none" style="background-image: none;">
-                                <option class="bg-black" value="honra">Honra e Integridade</option>
-                                <option class="bg-black" value="familia">Família e Legado</option>
-                                <option class="bg-black" value="trabalho">Trabalho Duro</option>
-                                <option class="bg-black" value="saude">Saúde Física e Mental</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="pt-4">
-                        <button type="submit" class="w-full bg-brand-brGreen hover:bg-brand-brYellow text-white hover:text-black font-display-custom text-sm py-4 tracking-widest uppercase transition-all duration-300 rounded-none shadow-lg shadow-brand-brGreen/30 flex items-center justify-center gap-2">
-                            <i data-lucide="award" class="w-5 h-5"></i> Alistar-se na Primeira Onda
-                        </button>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Footer Oficial -->
-    <footer class="bg-black border-t border-zinc-900 py-16 px-6">
-        <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 items-center text-center md:text-left">
-            
-            <!-- Esquerda: Informações da Marca -->
-            <div class="space-y-4">
-                <div class="flex items-center justify-center md:justify-start gap-3">
-                    <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/3.png?raw=true" alt="Ícone" class="w-8 h-8 opacity-80">
-                    <span class="text-white font-display-custom text-xl tracking-wider">Legião Leal</span>
-                </div>
-                <p class="text-zinc-500 text-xs max-w-xs leading-relaxed mx-auto md:mx-0">
-                    O uniforme e a comunidade de quem defende os pilares da Saúde, Família, Trabalho e Honra. Juntos, salvaremos e edificaremos esta pátria.
-                </p>
-            </div>
-
-            <!-- Centro: Links e Endereço -->
-            <div class="text-center space-y-3">
-                <span class="block text-zinc-500 text-[10px] uppercase tracking-wider">Canais Oficiais</span>
-                <div class="flex justify-center gap-4">
-                    <a href="https://instagram.com/legiaoleal_oficial" target="_blank" class="w-10 h-10 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-brand-brYellow hover:border-brand-brYellow transition-all">
-                        <i data-lucide="instagram" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-brand-brYellow hover:border-brand-brYellow transition-all">
-                        <i data-lucide="youtube" class="w-5 h-5"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-brand-brYellow hover:border-brand-brYellow transition-all">
-                        <i data-lucide="send" class="w-5 h-5"></i>
-                    </a>
-                </div>
-                <span class="text-[10px] text-zinc-600 block mt-2">@legiaoleal_oficial #VistaOCodigo</span>
-            </div>
-
-            <!-- Direita: Contato e Assinatura -->
-            <div class="text-center md:text-right space-y-2">
-                <span class="block text-brand-brYellow font-display-custom text-lg">VISTA O SEU PROPÓSITO.</span>
-                <p class="text-zinc-500 text-[11px] leading-relaxed">
-                    Dúvidas ou alistamento direto por WhatsApp de atendimento VIP.<br>
-                    Suporte Operacional Ativo.
-                </p>
-                <p class="text-zinc-600 text-[9px] uppercase tracking-widest pt-4">© 2026 Legião Leal. Honra acima de tudo.</p>
-            </div>
-
-        </div>
-    </footer>
-
-    <!-- Video Modal Conceitual -->
-    <div id="videoModal" class="fixed inset-0 z-[200] bg-black/95 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0">
-        <button onclick="closeManifestoVideo()" class="absolute top-6 right-6 text-white hover:text-brand-brYellow transition-colors">
-            <i data-lucide="x" class="w-8 h-8"></i>
-        </button>
-        <div class="w-full max-w-4xl aspect-video bg-zinc-950 border border-zinc-800 p-2">
-            <iframe id="modalIframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Scripts Otimizados -->
     <script>
-        // Inicializar Lucide Icons
-        lucide.createIcons();
+        // --- Sticky Header & Mobile Menu ---
+        const navbar = document.getElementById('navbar');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
 
-        // Animação Cinematográfica das Portas e Início do Site
-        window.addEventListener('load', () => {
-            // Tempo exibindo a logo na tela inteira
-            setTimeout(() => {
-                // Abre as portas revelando a Headline
-                document.getElementById('door-left').classList.add('door-open-left');
-                document.getElementById('door-right').classList.add('door-open-right');
-                
-                // Libera scroll e Header, Inicializa AOS das animações dos textos
-                setTimeout(() => {
-                    document.body.classList.remove('locked');
-                    document.getElementById('main-header').classList.remove('opacity-0');
-                    document.getElementById('main-header').classList.add('opacity-100');
-                    
-                    // Inicializa o AOS somente agora para que os textos do Hero animem na hora que a porta abrir
-                    AOS.init({
-                        once: true,
-                        offset: 40,
-                        duration: 1200,
-                        easing: 'ease-out-cubic',
-                    });
-                    
-                    // Remove preloader do DOM após animação
-                    setTimeout(() => {
-                        document.getElementById('door-left').remove();
-                        document.getElementById('door-right').remove();
-                    }, 500);
-
-                }, 400); // tempo de espera para liberar os textos enquanto a porta desliza
-            }, 1800); // Fica 1.8 segundos com a logo em tela cheia antes de abrir
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            } else {
+                icon.classList.remove('ph-list');
+                icon.classList.add('ph-x');
+            }
+        });
 
-        // Modal de Vídeo Conceitual
-        function playManifestoVideo() {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('modalIframe');
-            iframe.src = "https://www.youtube.com/embed/n_D1Z9C80gU?autoplay=1";
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.add('opacity-100');
-            }, 50);
-        }
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('ph-x');
+                icon.classList.add('ph-list');
+            });
+        });
 
-        function closeManifestoVideo() {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('modalIframe');
-            modal.classList.remove('opacity-100');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                iframe.src = "";
-            }, 300);
-        }
+        // --- Parallax ---
+        window.addEventListener('scroll', () => {
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.parallax-wrapper').forEach(wrapper => {
+                    const parent = wrapper.parentElement;
+                    const rect = parent.getBoundingClientRect();
+                    
+                    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                        const offset = (rect.top + rect.height / 2) - (window.innerHeight / 2);
+                        const speed = parseFloat(wrapper.getAttribute('data-speed')) || 0.15;
+                        wrapper.style.transform = `translate3d(0, ${offset * speed}px, 0)`;
+                    }
+                });
+            });
+        });
 
-        // Envio do formulário
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const btn = form.querySelector('button');
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i> Cadastrando na Tropa...`;
-            lucide.createIcons();
-            btn.disabled = true;
+        // --- Scroll Animation Reveal ---
+        (function() {
+            document.addEventListener("DOMContentLoaded", () => {
+                const reveals = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
 
-            setTimeout(() => {
-                btn.innerHTML = `<i data-lucide="check-circle-2" class="w-5 h-5 text-green-400"></i> Alistado com sucesso!`;
-                lucide.createIcons();
-                form.reset();
-                
-                const notification = document.createElement('div');
-                notification.className = "fixed bottom-6 right-6 z-[210] bg-brand-military border border-brand-brYellow p-4 text-white font-display-custom text-xs shadow-2xl animate-fade-in";
-                notification.innerHTML = `<div class="flex items-center gap-2"><i data-lucide="sparkles" class="text-brand-brYellow"></i> BEM-VINDO À LEGIÃO. INSTRUÇÕES ENVIADAS AO SEU WHATSAPP.</div>`;
-                document.body.appendChild(notification);
-                lucide.createIcons();
-                
-                setTimeout(() => { notification.remove(); }, 5000);
+                const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                            observer.unobserve(entry.target); 
+                        }
+                    });
+                }, {
+                    root: null,
+                    threshold: 0.1, 
+                    rootMargin: "0px 0px -20px 0px"
+                });
 
-                btn.disabled = false;
                 setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    lucide.createIcons();
-                }, 2000);
-            }, 1800);
-        }
+                    reveals.forEach((el) => revealOnScroll.observe(el));
+                }, 150);
+            });
+        })();
+
+        // --- Splash Screen ---
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            // Mantém a tela inicial por 1.5 segundos para admiração antes de transicionar
+            setTimeout(() => {
+                splash.classList.add('hidden-splash');
+                // Remove a div do DOM após o término da transição de 800ms
+                setTimeout(() => {
+                    splash.remove();
+                }, 800);
+            }, 1500);
+        });
     </script>
 </body>
 </html>
