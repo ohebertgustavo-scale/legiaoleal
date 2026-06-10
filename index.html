@@ -180,17 +180,17 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            pointer-events: none; /* Evita bloquear cliques enquanto some */
+            pointer-events: none;
         }
         .curtain-panel {
             position: absolute;
             top: 0;
-            width: 50.1%; /* 0.1% a mais para evitar linha no meio */
+            width: 50.1%;
             height: 100%;
             background-color: #050505;
             transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
             z-index: 1;
-            pointer-events: auto; /* Bloqueia cliques na cortina preta */
+            pointer-events: auto;
         }
         .curtain-panel.left {
             left: 0;
@@ -217,12 +217,12 @@
         .splash-logo {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Mantém a proporção sem distorcer, mas usa todo o espaço */
+            object-fit: contain;
             animation: pulse-slow 2s infinite;
         }
         #splash-screen.hidden-logo .splash-logo-container {
             opacity: 0;
-            transform: scale(2.5); /* Efeito de Zoom In pesado antes de sumir */
+            transform: scale(2.5);
         }
     </style>
 </head>
@@ -247,11 +247,11 @@
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8">
-            <a href="#missao" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">A Missão</a>
-            <a href="#pilares" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Pilares</a>
-            <a href="#fraternidade" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Fraternidade</a>
-            <a href="#arsenal" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">O Arsenal</a>
-            <a href="#tropa" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">A Tropa</a>
+            <a href="#missao" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Missão</a>
+            <a href="#pilares" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Visão</a>
+            <a href="#pilares" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Valores</a>
+            <a href="#arsenal" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Nossas armas</a>
+            <a href="#tropa" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Comunidade</a>
         </nav>
 
         <!-- CTA Header (Desktop) -->
@@ -266,15 +266,15 @@
 
         <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full mt-4 bg-legiao-dark/95 backdrop-blur-xl rounded-3xl flex flex-col shadow-2xl border border-white/10 overflow-hidden">
-            <a href="#missao" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">A Missão</a>
-            <a href="#pilares" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Pilares</a>
-            <a href="#fraternidade" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Fraternidade</a>
-            <a href="#arsenal" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">O Arsenal</a>
-            <a href="#tropa" class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">A Tropa</a>
+            <a href="#missao" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Missão</a>
+            <a href="#pilares" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Visão</a>
+            <a href="#pilares" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Valores</a>
+            <a href="#arsenal" class="px-6 py-4 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Nossas armas</a>
+            <a href="#tropa" class="px-6 py-4 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 transition-colors mobile-link">Comunidade</a>
         </div>
     </header>
 
-    <!-- 1ª Seção - Hero + Formulário -->
+    <!-- 1ª Seção - Hero + Espaço Reels -->
     <section id="inicio" class="relative md:sticky top-0 min-h-[100svh] flex items-center pt-28 pb-10 md:pt-32 md:pb-12 overflow-hidden bg-legiao-black z-0">
         
         <!-- Fundo Cinemático e Dark -->
@@ -301,73 +301,61 @@
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-legiao-gold opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-legiao-gold"></span>
                         </span>
-                        Convocação Oficial Lote 01
+                        Porque surgimos?
                     </div>
                     
                     <h1 class="font-display text-[2.5rem] sm:text-4xl md:text-5xl lg:text-[5rem] font-bold uppercase tracking-tight mb-4 md:mb-6 leading-[1.05]">
-                        Forjando o legado do <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">homem comum.</span>
+                        Um manifesto da ordem <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">contra o caos.</span>
                     </h1>
                     
                     <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 md:mb-10 font-normal text-gray-300 max-w-2xl mx-auto md:mx-0 leading-relaxed">
-                        Mais que uma marca, um pacto. O uniforme daqueles que defendem os pilares da <span class="text-white font-bold">Saúde, Família, Trabalho e Honra.</span>
+                        Assista o vídeo e entenda porque devemos nos unir antes que seja tarde demais para salvar as próximas gerações e o futuro do nosso país.
                     </p>
                     
                     <!-- Benefícios rápidos -->
                     <div class="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 hidden md:flex">
                         <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
                             <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
-                                <i class="ph-bold ph-shield-check text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
+                                <i class="ph-bold ph-barbell text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
                             </div>
-                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Proteção</span>
-                        </div>
-                        <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
-                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
-                                <i class="ph-bold ph-hammer text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
-                            </div>
-                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Trabalho Duro</span>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Saúde</span>
                         </div>
                         <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
                             <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
                                 <i class="ph-bold ph-users-three text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
                             </div>
-                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Irmandade</span>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Família</span>
+                        </div>
+                        <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
+                                <i class="ph-bold ph-hand-fist text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Trabalho</span>
+                        </div>
+                        <div class="flex items-center gap-2 group cursor-default hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
+                                <i class="ph-bold ph-shield-star text-legiao-gold group-hover:text-legiao-black text-xl transition-colors duration-300"></i>
+                            </div>
+                            <span class="text-sm font-display font-bold uppercase tracking-wider text-gray-300 group-hover:text-legiao-gold transition-colors">Honra</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Form Card -->
-                <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full max-w-md mx-auto">
-                    <div id="alistamento" class="scroll-mt-32 glass-card rounded-3xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.9)] w-full relative overflow-hidden group border-t border-white/10 hover:border-legiao-gold/30 transition-colors duration-500">
+                <!-- Espaço Reels (Video do YouTube) -->
+                <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full max-w-sm mx-auto">
+                    <div class="w-full max-w-[320px] aspect-[9/16] glass-card rounded-[2.5rem] p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden group border border-white/10 hover:border-legiao-gold/30 transition-colors duration-500">
                         <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-legiao-gold/10 to-transparent rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[shine_4s_infinite] pointer-events-none"></div>
-
-                        <div class="text-center mb-6 sm:mb-8 relative z-10">
-                            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white uppercase mb-2 tracking-tight group-hover:text-legiao-gold transition-colors">Alistamento VIP</h2>
-                            <p class="text-xs sm:text-sm text-gray-400 font-medium">Os 100 primeiros garantem acesso exclusivo ao arsenal Lendário.</p>
+                        
+                        <!-- Conteiner do Vídeo YouTube -->
+                        <div class="w-full h-full bg-[#050505] rounded-[2rem] border border-gray-800 relative overflow-hidden z-10">
+                            <iframe 
+                                src="https://www.youtube.com/embed/mdmVxRj62BM?autoplay=1&mute=1&loop=1&playlist=mdmVxRj62BM&controls=0&rel=0&feature=share" 
+                                class="absolute top-0 left-0 w-full h-full"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
-
-                        <form class="space-y-4 sm:space-y-5 relative z-10">
-                            <div class="transition-all">
-                                <label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase mb-1 sm:mb-2 tracking-wider">Nome Completo</label>
-                                <input type="text" placeholder="Como devemos chamá-lo?" class="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-xl bg-black/80 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-legiao-gold transition-all shadow-inner text-sm">
-                            </div>
-                            <div class="transition-all">
-                                <label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase mb-1 sm:mb-2 tracking-wider">E-mail</label>
-                                <input type="email" placeholder="seu@email.com" class="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-xl bg-black/80 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-legiao-gold transition-all shadow-inner text-sm">
-                            </div>
-                            <div class="transition-all">
-                                <label class="block text-[10px] sm:text-xs font-bold text-gray-400 uppercase mb-1 sm:mb-2 tracking-wider">WhatsApp</label>
-                                <input type="tel" placeholder="(00) 00000-0000" class="w-full px-4 sm:px-5 py-3 sm:py-4 rounded-xl bg-black/80 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-legiao-gold transition-all shadow-inner text-sm">
-                            </div>
-                            <div class="pt-2 sm:pt-4">
-                                <button type="button" class="font-display btn-shine w-full bg-legiao-greenCta text-white hover:bg-legiao-greenCtaHover font-bold uppercase tracking-widest py-4 sm:py-4.5 rounded-xl text-base sm:text-lg transition-all transform hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(75,83,32,0.5)] flex justify-center items-center gap-2">
-                                    Alistar-me Agora
-                                    <i class="ph-bold ph-arrow-right text-lg sm:text-xl"></i>
-                                </button>
-                            </div>
-                            <p class="text-[10px] sm:text-xs text-center text-gray-500 mt-4 flex items-center justify-center gap-1.5 font-medium">
-                                <i class="ph-fill ph-lock-key text-legiao-gold text-sm sm:text-base"></i> Seus dados estão protegidos na nossa base.
-                            </p>
-                        </form>
                     </div>
                 </div>
 
@@ -890,6 +878,7 @@
         // --- Splash Screen ---
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
+            if (!splash) return;
             // Mantém a logo na tela para admiração
             setTimeout(() => {
                 // 1º Passo: Dá zoom e oculta a logo
@@ -923,34 +912,44 @@
 
         let currentGallery = [];
         let currentIndex = 0;
-        let galleryModal, mainImg, thumbsContainer;
+        
+        let modalEl = null;
+        let imgEl = null;
+        let thumbsEl = null;
 
-        window.addEventListener('DOMContentLoaded', () => {
-            galleryModal = document.getElementById('gallery-modal');
-            mainImg = document.getElementById('gallery-main-img');
-            thumbsContainer = document.getElementById('gallery-thumbnails');
-        });
+        function initGalleryElements() {
+            modalEl = document.getElementById('gallery-modal');
+            imgEl = document.getElementById('gallery-main-img');
+            thumbsEl = document.getElementById('gallery-thumbnails');
+        }
+
+        document.addEventListener("DOMContentLoaded", initGalleryElements);
 
         function openGallery(type) {
+            if (!modalEl || !imgEl) initGalleryElements();
+            if (!modalEl || !imgEl) return;
+            
             currentGallery = galleries[type];
             currentIndex = 0;
             updateGalleryUI();
             
-            galleryModal.classList.remove('hidden');
-            galleryModal.classList.add('flex');
+            modalEl.classList.remove('hidden');
+            modalEl.classList.add('flex');
             
             setTimeout(() => {
-                galleryModal.classList.remove('opacity-0');
+                modalEl.classList.remove('opacity-0');
             }, 10);
             
             document.body.style.overflow = 'hidden'; // Bloqueia o scroll da página
         }
 
         function closeGallery() {
-            galleryModal.classList.add('opacity-0');
+            if (!modalEl) return;
+            
+            modalEl.classList.add('opacity-0');
             setTimeout(() => {
-                galleryModal.classList.add('hidden');
-                galleryModal.classList.remove('flex');
+                modalEl.classList.add('hidden');
+                modalEl.classList.remove('flex');
             }, 300);
             
             document.body.style.overflow = ''; // Restaura o scroll
@@ -973,18 +972,22 @@
         }
 
         function updateGalleryUI() {
+            if (!imgEl || !thumbsEl) return;
+            
             // Adiciona fade sutil
-            mainImg.style.opacity = 0;
+            imgEl.style.opacity = 0;
             setTimeout(() => {
-                mainImg.src = currentGallery[currentIndex];
-                mainImg.style.opacity = 1;
+                if (imgEl) {
+                    imgEl.src = currentGallery[currentIndex];
+                    imgEl.style.opacity = 1;
+                }
             }, 150);
             
             // Renderiza as miniaturas (thumbnails)
-            thumbsContainer.innerHTML = '';
+            thumbsEl.innerHTML = '';
             currentGallery.forEach((src, idx) => {
                 const isActive = idx === currentIndex;
-                thumbsContainer.innerHTML += `
+                thumbsEl.innerHTML += `
                     <button onclick="setMainImage(${idx})" class="w-16 h-16 sm:w-24 sm:h-24 shrink-0 rounded-xl overflow-hidden border-2 transition-all duration-300 ${isActive ? 'border-legiao-gold opacity-100 scale-105 shadow-[0_0_15px_rgba(198,166,100,0.4)]' : 'border-transparent opacity-40 hover:opacity-100'}">
                         <img src="${src}" class="w-full h-full object-cover">
                     </button>
@@ -995,6 +998,7 @@
 
         // Lógica para Efeito de Zoom Magnético
         function zoomImage(e) {
+            if (!imgEl) return;
             const container = e.currentTarget;
             const rect = container.getBoundingClientRect();
             
@@ -1006,13 +1010,15 @@
             const xPercent = (x / rect.width) * 100;
             const yPercent = (y / rect.height) * 100;
             
-            mainImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-            mainImg.style.transform = 'scale(2.2)'; // Fator de Zoom
+            imgEl.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+            imgEl.style.transform = 'scale(2.2)'; // Fator de Zoom
         }
 
         function resetZoom() {
-            mainImg.style.transformOrigin = 'center center';
-            mainImg.style.transform = 'scale(1)';
+            if (imgEl) {
+                imgEl.style.transformOrigin = 'center center';
+                imgEl.style.transform = 'scale(1)';
+            }
         }
 
         // Fechar ao clicar fora da imagem
