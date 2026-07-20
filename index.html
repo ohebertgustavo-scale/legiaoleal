@@ -120,14 +120,11 @@
             backface-visibility: hidden;
         }
 
-        /* Mobile Scrollbar Hide for native feel */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #C6A664; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #A88A4D; }
 
         /* Reveal Animations */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); }
@@ -139,12 +136,6 @@
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
         .delay-300 { transition-delay: 300ms; }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #C6A664; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #A88A4D; }
 
         /* Header Flutuante Premium */
         #navbar {
@@ -180,7 +171,7 @@
             #navbar.scrolled { top: 1rem; padding: 0.75rem 2rem; }
         }
 
-        /* Splash Screen - Tela Cheia & Efeito Cortina */
+        /* Splash Screen */
         #splash-screen {
             position: fixed;
             inset: 0;
@@ -237,7 +228,7 @@
 </head>
 <body class="bg-legiao-black text-white antialiased font-sans overflow-x-hidden">
 
-    <!-- Splash Screen -->
+    <!-- Splash Screen (CORRIGIDO: A logo arredondada) -->
     <div id="splash-screen">
         <div class="curtain-panel left"></div>
         <div class="curtain-panel right"></div>
@@ -248,57 +239,44 @@
 
     <!-- Sticky Floating Header -->
     <header id="navbar">
-        <!-- Brand / Logo -->
+        <!-- Brand / Logo (CORRIGIDO: Tamanho reduzido e alinhamento ajustado) -->
         <a href="#inicio" class="transition-transform duration-300 hover:scale-105 flex items-center justify-center">
             <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/Design%20sem%20nome.png?raw=true" alt="Legião Leal Logo" class="h-8 sm:h-10 lg:h-12 w-auto object-contain object-center">
         </a>
 
-        <!-- Desktop Navigation (Modificado: Direcionando Missão, Visão e Valores para a Seção de Pilares #pilares) -->
+        <!-- Desktop Navigation (CORRIGIDO: Apenas 3 links) -->
         <nav class="hidden lg:flex items-center gap-8">
             <a href="#missao" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Missão</a>
-            <a href="#pilares" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Visão</a>
-            <a href="#pilares" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Valores</a>
             <a href="#arsenal" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Nossas armas</a>
-            <a href="#tropa" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Comunidade</a>
+            <a href="#fraternidade" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Comunidade</a>
         </nav>
 
-        <!-- CTA Header (Desktop) -->
         <a href="#alistamento" class="hidden lg:inline-flex bg-legiao-greenCta hover:bg-legiao-greenCtaHover active:scale-95 text-white px-7 py-3 rounded-full font-bold uppercase tracking-widest text-xs items-center gap-2 transition-transform transform hover:scale-105 shadow-md font-display">
             Alistar-se <i class="ph-bold ph-sword text-lg"></i>
         </a>
 
-        <!-- Mobile Menu Toggle -->
         <button id="mobile-menu-btn" class="lg:hidden text-white p-2 hover:text-legiao-gold transition-colors active:scale-95">
             <i class="ph-bold ph-list text-3xl"></i>
         </button>
 
-        <!-- Mobile Navigation Menu (Modificado: Direcionando Missão, Visão e Valores para a Seção de Pilares #pilares) -->
+        <!-- Mobile Navigation Menu (CORRIGIDO: Apenas 3 links) -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full mt-4 bg-legiao-dark/95 backdrop-blur-xl rounded-3xl flex flex-col shadow-2xl border border-white/10 overflow-hidden">
             <a href="#missao" class="px-6 py-5 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Missão</a>
-            <a href="#pilares" class="px-6 py-5 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Visão</a>
-            <a href="#pilares" class="px-6 py-5 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Valores</a>
             <a href="#arsenal" class="px-6 py-5 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Nossas armas</a>
-            <a href="#tropa" class="px-6 py-5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Comunidade</a>
+            <a href="#fraternidade" class="px-6 py-5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Comunidade</a>
         </div>
     </header>
 
     <!-- 1ª Seção - Hero + Espaço Reels -->
     <section id="inicio" class="relative min-h-[100svh] flex items-center pt-28 pb-12 lg:pt-40 lg:pb-24 overflow-hidden bg-legiao-black z-0">
-        
-        <!-- Fundo Cinemático e Dark -->
         <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.25">
             <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/IMG_3244.PNG?raw=true" 
                  alt="Guerreiro Treinando" 
                  class="w-full h-full object-cover animate-slow-zoom opacity-40">
         </div>
-        
-        <!-- Overlay Gradient -->
         <div class="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-legiao-black via-legiao-black/95 to-transparent z-0"></div>
-        
-        <!-- Blobs dinâmicos -->
         <div class="absolute top-1/4 -left-10 w-96 h-96 bg-legiao-green rounded-full mix-blend-screen filter blur-[120px] opacity-50 animate-blob z-0 pointer-events-none"></div>
 
-        <!-- Conteúdo -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
                 
@@ -312,17 +290,14 @@
                         Porque surgimos?
                     </div>
                     
-                    <!-- Headline -->
                     <h1 class="font-display text-[2.5rem] sm:text-5xl md:text-6xl lg:text-[4.8rem] font-bold uppercase tracking-tight mb-4 sm:mb-6 leading-[1.05]">
                         O manifesto da ordem <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">contra o caos.</span>
                     </h1>
                     
-                    <!-- Subline -->
                     <p class="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 lg:mb-12 font-normal text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                         Assista ao vídeo e entenda por que devemos nos unir antes que seja tarde demais para salvar as próximas gerações e o futuro do nosso país.
                     </p>
                     
-                    <!-- Benefícios rápidos -->
                     <div class="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 md:gap-6">
                         <div class="flex items-center gap-2 sm:gap-3 group cursor-default hover:-translate-y-1 transition-transform duration-300">
                             <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-legiao-gold group-hover:border-legiao-gold transition-all duration-300 shadow-lg group-hover:shadow-[0_0_15px_rgba(198,166,100,0.5)]">
@@ -351,12 +326,11 @@
                     </div>
                 </div>
 
-                <!-- Espaço Reels (Video do YouTube) -->
-                <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full mx-auto">
-                    <div class="w-[85vw] sm:w-full max-w-[320px] aspect-[9/16] glass-card rounded-[2.5rem] p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden group border border-white/10 hover:border-legiao-gold/30 transition-colors duration-500 mt-4 md:mt-0">
+                <!-- Espaço Reels -->
+                <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full mx-auto mt-10 md:mt-0">
+                    <div class="w-full max-w-[320px] aspect-[9/16] glass-card rounded-[2.5rem] p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden group border border-white/10 hover:border-legiao-gold/30 transition-colors duration-500">
                         <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-legiao-gold/10 to-transparent rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[shine_4s_infinite] pointer-events-none"></div>
                         
-                        <!-- Conteiner do Vídeo YouTube -->
                         <div class="w-full h-full bg-[#050505] rounded-[2rem] border border-gray-800 relative overflow-hidden z-10">
                             <iframe 
                                 src="https://www.youtube.com/embed/mdmVxRj62BM?autoplay=1&mute=0&loop=1&playlist=mdmVxRj62BM&controls=1&rel=0&feature=share" 
@@ -376,7 +350,7 @@
     <!-- Wrapper Parallax Cortina -->
     <div class="relative z-10 bg-legiao-dark shadow-[0_-20px_50px_rgba(0,0,0,0.9)] rounded-t-3xl md:rounded-t-[2.5rem] lg:rounded-t-[4rem] overflow-hidden">
 
-        <!-- 2ª Seção - A Nossa Filosofia + Formulário de Alistamento -->
+        <!-- 2ª Seção - A Nossa Filosofia + Formulário -->
         <section id="missao" class="py-12 md:py-24 relative overflow-hidden">
             <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.2">
                 <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1920&auto=format&fit=crop" 
@@ -388,7 +362,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-center">
                     
-                    <!-- Lado Esquerdo: Filosofia da Marca -->
+                    <!-- Lado Esquerdo -->
                     <div class="lg:col-span-7 text-center lg:text-left reveal-left">
                         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase text-white mb-4 sm:mb-6 leading-tight tracking-tight">
                             A <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">Nossa Filosofia</span>
@@ -397,14 +371,14 @@
                             A Legião Leal nasceu para unir as pessoas de bem que não abrem mão de viver sobre os valores mais importantes da sociedade: Saúde, Família, Trabalho e Honra.
                         </p>
                         
-                        <div class="border-l-4 border-legiao-gold pl-5 md:pl-6 py-2 md:py-3 text-left bg-white/5 rounded-r-xl max-w-xl mx-auto lg:mx-0 mb-6 lg:mb-0">
+                        <div class="border-l-4 border-legiao-gold pl-5 md:pl-6 py-2 md:py-3 text-left bg-white/5 rounded-r-xl max-w-xl mx-auto lg:mx-0 mb-8 lg:mb-0">
                             <p class="italic text-gray-300 text-sm sm:text-base leading-relaxed">
                                 "Vista seus valores, construa seu legado, honre sua historia. Qual tipo de sociedade iremos deixar para nossos filhos?"
                             </p>
                         </div>
                     </div>
 
-                    <!-- Lado Direito: Formulário de Alistamento VIP -->
+                    <!-- Lado Direito -->
                     <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full max-w-md mx-auto">
                         <div id="alistamento" class="scroll-mt-32 glass-card rounded-3xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.9)] w-full relative overflow-hidden group border-t border-white/10 hover:border-legiao-gold/30 transition-colors duration-500">
                             <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-legiao-gold/10 to-transparent rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[shine_4s_infinite] pointer-events-none"></div>
@@ -446,9 +420,9 @@
 
         <!-- 3ª Seção - Diferenciais (Os Nossos Pilares) -->
         <section id="pilares" class="py-12 md:py-24 bg-legiao-black relative overflow-hidden border-t border-white/5 animate-parallax">
-            <div class="max-w-7xl mx-auto px-0 md:px-4 sm:px-6 lg:px-8 relative z-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 
-                <div class="text-center mb-8 md:mb-20 reveal px-4">
+                <div class="text-center mb-10 md:mb-20 reveal">
                     <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-white drop-shadow-md">
                         MISSÃO, VISÃO <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600">E VALORES</span>
                     </h2>
@@ -457,11 +431,11 @@
                     </p>
                 </div>
 
-                <!-- 4 Caixas de Pilares com as Novas Fotos Fornecidas, Centralizadas Perfeitamente -->
-                <div class="flex md:grid md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-0 px-4 md:px-0 hide-scrollbar">
+                <!-- Grid Vertical no Mobile / Grid 2x2 no Desktop -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
                     
                     <!-- Pilar 1: Saúde -->
-                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-left delay-100 group shadow-xl border border-white/5 min-h-[360px] md:aspect-[4/3] flex flex-col justify-end shrink-0 snap-center min-w-[85vw] md:min-w-0">
+                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-left delay-100 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/SA%C3%9ADE.jpeg?raw=true" alt="Saúde" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-transparent"></div>
@@ -479,7 +453,7 @@
                     </div>
 
                     <!-- Pilar 2: Família -->
-                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-right delay-200 group shadow-xl border border-white/5 min-h-[360px] md:aspect-[4/3] flex flex-col justify-end shrink-0 snap-center min-w-[85vw] md:min-w-0">
+                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-right delay-200 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/FAMILIA.jpeg?raw=true" alt="Família" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-transparent"></div>
@@ -497,7 +471,7 @@
                     </div>
 
                     <!-- Pilar 3: Trabalho -->
-                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-left delay-100 group shadow-xl border border-white/5 min-h-[360px] md:aspect-[4/3] flex flex-col justify-end shrink-0 snap-center min-w-[85vw] md:min-w-0">
+                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-left delay-100 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/TRABALHO.jpeg?raw=true" alt="Trabalho" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-transparent"></div>
@@ -515,7 +489,7 @@
                     </div>
 
                     <!-- Pilar 4: Honra -->
-                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-right delay-200 group shadow-xl border border-white/5 min-h-[360px] md:aspect-[4/3] flex flex-col justify-end shrink-0 snap-center min-w-[85vw] md:min-w-0">
+                    <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-all duration-500 reveal-right delay-200 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/HONRA.jpeg?raw=true" alt="Honra" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45">
                             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/75 to-transparent"></div>
@@ -538,22 +512,22 @@
 
         <!-- 4ª Seção - Estrutura / Arsenal (Produtos) -->
         <section id="arsenal" class="py-12 md:py-28 bg-legiao-dark relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-0 md:px-4 sm:px-6 lg:px-8 relative z-20">
-                <div class="text-center mb-8 md:mb-20 reveal px-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+                <div class="text-center mb-10 md:mb-20 reveal">
                     <p class="text-legiao-gold font-bold text-xs sm:text-sm tracking-widest uppercase mb-2 md:mb-3 reveal">O seu bônus de alistamento</p>
                     <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-white mb-3 md:mb-4 drop-shadow-lg">
                         O SÍMBOLO DO NOSSO <span class="text-legiao-gold drop-shadow-md">PACTO.</span>
                     </h2>
                     <p class="text-sm sm:text-lg md:text-xl text-gray-400 font-normal max-w-3xl mx-auto leading-relaxed">
-                        Você não está comprando um boné. Você está se juntando à Legião Leal e fazendo parte da nossa Fraternidade. O boné oficial é o seu troféu, a sua armadura física que simboliza a que bando você pertence e o compromisso inegociável que você assume.
+                        Você não está comprando apenas um boné. Você está se tornando membro de uma comunidade que está transformando nosso país. Este item simboliza a sua contribuição nesta missão.
                     </p>
                 </div>
 
-                <!-- Carrossel Mobile / Grid Desktop -->
-                <div class="flex md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-6 md:pb-0 px-4 md:px-0 hide-scrollbar">
+                <!-- Grid Vertical no Mobile / Grid 2 Colunas Desktop -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 max-w-4xl mx-auto">
                     
                     <!-- Boné Trucker -->
-                    <div class="p-6 md:p-8 rounded-3xl bg-[#0F0F0F] border border-white/5 hover:-translate-y-2 hover:border-legiao-gold/50 transition-all duration-500 group reveal delay-100 shadow-2xl relative overflow-hidden flex flex-col text-center shrink-0 snap-center min-w-[85vw] md:min-w-0">
+                    <div class="p-6 md:p-8 rounded-3xl bg-[#0F0F0F] border border-white/5 hover:-translate-y-2 hover:border-legiao-gold/50 transition-all duration-500 group reveal delay-100 shadow-2xl relative overflow-hidden flex flex-col text-center">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-green/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         
                         <div onclick="openGallery('trucker')" class="cursor-pointer w-full aspect-square bg-[#141414] rounded-2xl mb-6 flex items-center justify-center border border-white/5 relative overflow-hidden group/img">
@@ -578,7 +552,7 @@
                     </div>
 
                     <!-- Boné Americano -->
-                    <div class="p-6 md:p-8 rounded-3xl bg-[#0F0F0F] border-2 border-legiao-gold/20 hover:-translate-y-4 hover:border-legiao-gold transition-all duration-500 group reveal delay-200 shadow-[0_0_30px_rgba(198,166,100,0.1)] relative overflow-hidden flex flex-col text-center md:-mt-6 shrink-0 snap-center min-w-[85vw] md:min-w-0">
+                    <div class="p-6 md:p-8 rounded-3xl bg-[#0F0F0F] border-2 border-legiao-gold/20 hover:-translate-y-4 hover:border-legiao-gold transition-all duration-500 group reveal delay-200 shadow-[0_0_30px_rgba(198,166,100,0.1)] relative overflow-hidden flex flex-col text-center md:-mt-6">
                         <div class="absolute top-0 right-0 bg-legiao-gold text-black text-[9px] sm:text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider z-10 pointer-events-none">Premium</div>
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-gold/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         
@@ -621,31 +595,31 @@
                         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-bold uppercase tracking-tight mb-6 md:mb-8 leading-[1.05] text-[#0A0A0A]">
                             Acesso à <span class="underline decoration-legiao-green decoration-4 md:decoration-8 underline-offset-4">Fraternidade.</span>
                         </h2>
-                        <p class="text-gray-700 text-base sm:text-lg mb-8 font-medium">Alinhe sua vida pessoal com a sua ambição. Uma rede exclusiva para homens que operam baseados nos 4 Pilares Inegociáveis.</p>
+                        <p class="text-gray-700 text-base sm:text-lg mb-8 font-medium">Faça parte de uma rede exclusiva de pessoas que vivem os valores mais importantes da vida!</p>
                         
                         <ul class="space-y-4 sm:space-y-6 mb-10 md:mb-12 text-sm sm:text-lg font-bold text-gray-800 text-left">
                             <li class="flex items-center gap-3 sm:gap-4 group cursor-default hover:translate-x-2 transition-transform">
                                 <div class="w-8 h-8 rounded-full bg-legiao-green/10 border border-legiao-green/20 flex items-center justify-center shrink-0 group-hover:bg-legiao-green transition-colors">
                                     <i class="ph-bold ph-shield text-legiao-green group-hover:text-white text-lg"></i>
                                 </div>
-                                <span>A Academia de Guerra: Frameworks de Liderança.</span>
+                                <span>Academia da vida: Dicas e frameworks</span>
                             </li>
                             <li class="flex items-center gap-3 sm:gap-4 group cursor-default hover:translate-x-2 transition-transform">
                                 <div class="w-8 h-8 rounded-full bg-legiao-green/10 border border-legiao-green/20 flex items-center justify-center shrink-0 group-hover:bg-legiao-green transition-colors">
                                     <i class="ph-bold ph-chart-line-up text-legiao-green group-hover:text-white text-lg"></i>
                                 </div>
-                                <span>O Arsenal Financeiro: Construção de equity real.</span>
+                                <span>Novidades sobre produtos e eventos</span>
                             </li>
                             <li class="flex items-center gap-3 sm:gap-4 group cursor-default hover:translate-x-2 transition-transform">
                                 <div class="w-8 h-8 rounded-full bg-legiao-green/10 border border-legiao-green/20 flex items-center justify-center shrink-0 group-hover:bg-legiao-green transition-colors">
                                     <i class="ph-bold ph-users text-legiao-green group-hover:text-white text-lg"></i>
                                 </div>
-                                <span>A Rede: Cercado de homens com o mesmo código.</span>
+                                <span>A rede: Network com pessoas que tem os mesmos valores.</span>
                             </li>
                         </ul>
 
                         <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display btn-shine active:scale-95 text-base sm:text-xl font-bold text-white uppercase bg-legiao-greenCta hover:bg-legiao-greenCtaHover inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-                            Quero me alistar <i class="ph-bold ph-arrow-right text-xl sm:text-2xl"></i>
+                            QUERO FAZER PARTE <i class="ph-bold ph-arrow-right text-xl sm:text-2xl"></i>
                         </a>
                     </div>
                     
@@ -653,7 +627,7 @@
                     <div class="flex-1 relative flex justify-center md:justify-end reveal-right mt-6 md:mt-0">
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#D4AF37] rounded-[4rem] rotate-6 z-0 shadow-lg transition-transform duration-700 hover:rotate-12 hover:scale-105 opacity-80 hidden sm:block"></div>
                         
-                        <!-- Celular Principal (Mockup WhatsApp ajustado para responsivo extremo) -->
+                        <!-- Celular Principal -->
                         <div class="relative w-[260px] h-[540px] sm:w-[300px] sm:h-[620px] max-w-[90vw] phone-mockup z-20 animate-float shadow-2xl bg-[#0b141a] transform origin-top border-gray-900 mx-auto">
                             <!-- Notch -->
                             <div class="absolute top-0 inset-x-0 h-6 sm:h-7 flex justify-center z-30">
@@ -669,11 +643,11 @@
                                 <div class="h-20 sm:h-24 bg-[#202c33] flex items-end pb-2 px-3 sm:px-4 relative z-10 shadow-md">
                                     <div class="flex items-center gap-2 sm:gap-3 w-full">
                                         <i class="ph-bold ph-arrow-left text-gray-300 text-lg sm:text-xl"></i>
-                                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-legiao-greenCta flex items-center justify-center shrink-0">
-                                            <i class="ph-fill ph-shield-cross text-legiao-gold text-lg sm:text-xl"></i>
+                                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-legiao-black flex items-center justify-center shrink-0 overflow-hidden border border-white/10">
+                                            <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Logo Grupo" class="w-full h-full object-cover scale-[1.15]">
                                         </div>
                                         <div class="flex-1">
-                                            <h3 class="font-bold text-sm sm:text-base leading-tight">A Fraternidade</h3>
+                                            <h3 class="font-bold text-sm sm:text-base leading-tight">Legião Leal</h3>
                                             <p class="text-[9px] sm:text-[11px] text-gray-400">Você, Capitão, Marcos...</p>
                                         </div>
                                         <i class="ph-bold ph-video-camera text-gray-300 text-lg sm:text-xl mr-2"></i>
@@ -692,7 +666,7 @@
                                     <div class="flex flex-col items-start w-full">
                                         <div class="bg-[#202c33] text-gray-200 p-2 sm:p-3 rounded-xl rounded-tl-none max-w-[85%] text-xs sm:text-sm shadow-sm relative">
                                             <span class="text-legiao-gold font-bold text-[10px] sm:text-xs block mb-1">Capitão</span>
-                                            Guerreiros, a aula sobre Delegação Extrema já está liberada no portal. Quem já aplicou o framework de ontem?
+                                            Fala Legionários! Hoje temos uma grande novidade no nosso youtube.
                                             <span class="text-[9px] text-gray-500 float-right mt-2 ml-3">08:42</span>
                                         </div>
                                     </div>
@@ -700,7 +674,7 @@
                                     <!-- Message Right -->
                                     <div class="flex flex-col items-end w-full">
                                         <div class="bg-[#005c4b] text-white p-2 sm:p-3 rounded-xl rounded-tr-none max-w-[85%] text-xs sm:text-sm shadow-sm relative">
-                                            Assisti hoje de madrugada. O pilar do Trabalho nunca fez tanto sentido. Já reuni a equipe e deleguei as operações críticas.
+                                            Exato! Precisamos divulgar ao máximo de pessoas, nosso futuro depende disso.
                                             <div class="text-[9px] text-[#53bdeb] float-right mt-2 ml-3 flex items-center gap-1">
                                                 09:15 <i class="ph-bold ph-checks"></i>
                                             </div>
@@ -711,7 +685,7 @@
                                     <div class="flex flex-col items-start w-full">
                                         <div class="bg-[#202c33] text-gray-200 p-2 sm:p-3 rounded-xl rounded-tl-none max-w-[85%] text-xs sm:text-sm shadow-sm relative">
                                             <span class="text-blue-400 font-bold text-[10px] sm:text-xs block mb-1">Marcos</span>
-                                            Exato! Nossa força está nos nossos valores. Força e honra! ⚔️
+                                            Conte conosco! Precisamos mostrar nosso compromisso com a verdade.
                                             <span class="text-[9px] text-gray-500 float-right mt-2 ml-3">09:30</span>
                                         </div>
                                     </div>
@@ -745,24 +719,24 @@
             </div>
             <div class="absolute inset-0 bg-gradient-to-t from-legiao-black via-legiao-black/90 to-transparent z-0"></div>
 
-            <div class="max-w-7xl mx-auto px-0 md:px-4 sm:px-6 lg:px-8 text-center relative z-20">
-                <div class="px-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
+                <div class="px-4 md:px-0">
                     <p class="text-legiao-gold font-bold text-xs sm:text-sm tracking-widest uppercase mb-2 md:mb-3 reveal">Comunidade de Valor</p>
                     <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem] font-bold uppercase tracking-tight text-white mb-3 md:mb-6 reveal leading-[1.05]">
                         QUEM VESTE,<br>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">RECONHECE O PESO.</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">JÁ FAZ PARTE DA MISSÃO!</span>
                     </h2>
                     <p class="text-sm sm:text-lg text-gray-400 mb-8 md:mb-20 font-medium reveal delay-100 max-w-2xl mx-auto">
-                        Não vendemos apenas roupas. Formamos uma legião de cidadãos exemplares que carregam no peito os valores e na cabeça a nossa armadura.
+                        Se você também está cansado da desvalorização de tudo o que é sagrado, faça parte da tropa!
                     </p>
                 </div>
 
-                <!-- Carrossel Mobile / Grid Desktop -->
-                <div class="flex sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 md:gap-12 mb-10 sm:mb-16 md:mb-24 overflow-x-auto sm:overflow-visible snap-x snap-mandatory pb-6 sm:pb-0 px-4 sm:px-0 hide-scrollbar">
+                <!-- Grid Vertical no Mobile / Grid 3 Colunas no Desktop -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-10 sm:mb-16 md:mb-24">
                     
                     <!-- Tropa Item 1 -->
-                    <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-auto sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-100 border border-white/10 hover:border-legiao-gold transition-colors mx-auto w-full shrink-0 snap-center min-w-[85vw] sm:min-w-0">
-                        <img src="https://images.unsplash.com/photo-1616803140344-6682afb13cda?q=80&w=600&auto=format&fit=crop" alt="Homem Forte de Boné" class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                    <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-100 border border-white/10 hover:border-legiao-gold transition-colors w-full">
+                        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/brunao.jpg?raw=true" alt="Homem Forte de Boné" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 grayscale group-hover:grayscale-0">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-left">
                             <div class="flex items-center gap-3 mb-3">
                                 <i class="ph-fill ph-instagram-logo text-white text-2xl"></i>
@@ -775,8 +749,8 @@
                     </div>
 
                     <!-- Tropa Item 2 -->
-                    <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-auto sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-200 border border-white/10 hover:border-legiao-gold transition-colors mx-auto w-full md:-translate-y-8 shrink-0 snap-center min-w-[85vw] sm:min-w-0">
-                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=600&auto=format&fit=crop" alt="Trabalho com Boné" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0">
+                    <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-200 border border-white/10 hover:border-legiao-gold transition-colors w-full md:-translate-y-8">
+                        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/casal.jpg?raw=true" alt="Trabalho com Boné" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 grayscale group-hover:grayscale-0">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-left">
                             <div class="flex items-center gap-3 mb-3">
                                 <i class="ph-fill ph-instagram-logo text-white text-2xl"></i>
@@ -789,8 +763,8 @@
                     </div>
 
                     <!-- Tropa Item 3 -->
-                    <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:aspect-auto sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-300 border border-white/10 hover:border-legiao-gold transition-colors mx-auto w-full shrink-0 snap-center min-w-[85vw] sm:min-w-0">
-                        <img src="https://images.unsplash.com/photo-1618193139062-2c5afd67c768?q=80&w=600&auto=format&fit=crop" alt="Honra com Boné" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 grayscale group-hover:grayscale-0" style="object-position: top;">
+                    <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-300 border border-white/10 hover:border-legiao-gold transition-colors w-full sm:col-span-2 md:col-span-1">
+                        <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/lucao.jpg?raw=true" alt="Honra com Boné" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 grayscale group-hover:grayscale-0">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent flex flex-col justify-end p-6 text-left">
                             <div class="flex items-center gap-3 mb-3">
                                 <i class="ph-fill ph-instagram-logo text-white text-2xl"></i>
@@ -803,7 +777,7 @@
                     </div>
                 </div>
 
-                <div class="px-4">
+                <div>
                     <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display btn-shine active:scale-95 w-full sm:w-auto bg-legiao-gold hover:bg-legiao-goldHover text-legiao-black px-8 sm:px-14 py-4 sm:py-6 rounded-full font-bold uppercase tracking-widest text-base sm:text-xl inline-flex items-center justify-center gap-3 transition-transform transform hover:scale-105 shadow-[0_15px_40px_rgba(198,166,100,0.3)] reveal delay-200">
                         Convoque seus valores <i class="ph-bold ph-flag-banner text-xl sm:text-3xl"></i>
                     </a>
@@ -819,9 +793,9 @@
             <div class="max-w-5xl mx-auto px-4 relative z-20 reveal">
                 <h2 class="font-display text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] font-bold uppercase text-white mb-6 md:mb-8 leading-tight md:leading-[1] tracking-tight drop-shadow-lg">
                     O Brasil não precisa de mais promessas,<br>
-                    <span class="text-legiao-gold drop-shadow-md">precisa de mais pilares.</span>
+                    <span class="text-legiao-gold drop-shadow-md">PRECISA RESGATAR SEUS PILARES.</span>
                 </h2>
-                <p class="text-gray-300 font-medium mb-10 md:mb-14 text-sm sm:text-xl max-w-3xl mx-auto drop-shadow-sm">Aliste-se na Legião Leal. A Força do Brasil está em Nossos Valores.</p>
+                <p class="text-gray-300 font-medium mb-10 md:mb-14 text-sm sm:text-xl max-w-3xl mx-auto drop-shadow-sm">Junte-se a uma Legião Leal de pessoas que vivem o mesmos valores.</p>
                 
                 <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display active:scale-95 w-full sm:w-auto bg-legiao-black hover:bg-[#0A0A0A] text-white border border-legiao-gold/30 hover:border-legiao-gold px-8 md:px-14 py-4 md:py-7 rounded-full font-bold uppercase tracking-widest text-sm sm:text-xl md:text-2xl inline-flex items-center justify-center gap-3 md:gap-4 transition-all transform hover:scale-105 sm:hover:-translate-y-2 shadow-2xl">
                     Reivindicar meu lugar <i class="ph-bold ph-arrow-up text-xl md:text-3xl text-legiao-gold"></i>
@@ -837,15 +811,24 @@
                 </a>
                 <p class="mb-2 font-bold text-gray-400 uppercase tracking-widest text-[10px] sm:text-xs">SAÚDE • FAMÍLIA • TRABALHO • HONRA</p>
                 <p class="mb-6 font-medium text-[10px] sm:text-xs">O exército de valores que reconstrói a nação. © 2026 Legião Leal.</p>
-                <div class="flex justify-center gap-4 sm:gap-8 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
+                <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
                     <a href="#" class="hover:text-legiao-gold transition-colors">Instagram</a>
-                    <span class="text-gray-800">|</span>
+                    <span class="text-gray-800 hidden sm:inline">|</span>
+                    <a href="#" class="hover:text-legiao-gold transition-colors">YouTube</a>
+                    <span class="text-gray-800 hidden sm:inline">|</span>
+                    <a href="#" class="hover:text-legiao-gold transition-colors">TikTok</a>
+                    <span class="text-gray-800 hidden sm:inline">|</span>
                     <a href="#" class="hover:text-legiao-gold transition-colors">Termos de Uso</a>
                 </div>
             </div>
         </footer>
 
     </div> <!-- Fim do Wrapper Parallax -->
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="fixed bottom-6 right-6 z-[90] bg-[#25D366] text-white p-3 sm:p-4 rounded-full shadow-[0_4px_15px_rgba(37,211,102,0.4)] hover:bg-[#1EBE5D] hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center cursor-pointer">
+        <i class="ph-fill ph-whatsapp-logo text-3xl sm:text-4xl"></i>
+    </a>
 
     <!-- Modal Galeria (Injetado antes do script) -->
     <div id="gallery-modal" class="fixed inset-0 z-[9999] bg-[#050505]/95 backdrop-blur-xl hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300">
