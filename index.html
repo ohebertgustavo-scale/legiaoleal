@@ -6,19 +6,25 @@
     <title>Legião Leal - Vista seus valores, honre seu legado.</title>
     <meta name="description" content="O uniforme daqueles que defendem a Saúde, a Família, o Trabalho e a Honra. Aliste-se na Legião Leal.">
     
+    <!-- Favicon -->
     <link class="favicon-icon" rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Cross-Pattee-Heraldry.svg/1024px-Cross-Pattee-Heraldry.svg.png" type="image/png">
     
+    <!-- Preconnect para melhorar tempo de resposta -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://wsrv.nl">
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Phosphor Icons (Carregamento assíncrono para não travar a página) -->
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+    <!-- Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -47,6 +53,8 @@
                         'blob': 'blob 7s infinite',
                         'shine': 'shine 3s infinite',
                         'slow-zoom': 'slowZoom 20s ease-in-out infinite alternate',
+                        'bounce-subtle': 'bounceSlight 3s ease-in-out infinite',
+                        'fade-in-out': 'fadeInOut 6s ease-in-out infinite'
                     },
                     keyframes: {
                         float: {
@@ -67,6 +75,14 @@
                         slowZoom: {
                             '0%': { transform: 'scale(1.05) translateZ(0)' },
                             '100%': { transform: 'scale(1.25) translateZ(0)' },
+                        },
+                        bounceSlight: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        },
+                        fadeInOut: {
+                            '0%, 10%, 90%, 100%': { opacity: '0', transform: 'translateY(10px)' },
+                            '30%, 70%': { opacity: '1', transform: 'translateY(0)' },
                         }
                     }
                 }
@@ -238,23 +254,38 @@
             opacity: 0;
             transform: scale(2);
         }
+
+        /* Botão do WhatsApp Fixado em Toda a Tela */
+        .whatsapp-fixed-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 99999; /* Z-index altíssimo para furar qualquer outra seção */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
     </style>
 </head>
 <body class="bg-legiao-black text-white antialiased font-sans overflow-x-hidden">
 
+    <!-- Splash Screen (Logo de Abertura HD Fixa) -->
     <div id="splash-screen">
         <div class="curtain-panel left"></div>
         <div class="curtain-panel right"></div>
         <div class="splash-logo-container">
-            <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/1.png&w=400&output=webp&q=70" alt="Legião Leal" class="splash-logo" fetchpriority="high">
+            <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Legião Leal" class="splash-logo" fetchpriority="high">
         </div>
     </div>
 
+    <!-- Sticky Floating Header -->
     <header id="navbar">
         <a href="#inicio" class="transition-transform duration-300 hover:scale-105 flex items-center justify-center">
             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/Design%20sem%20nome.png&w=400&output=webp&q=70" alt="Legião Leal Logo" class="h-8 sm:h-10 lg:h-12 w-auto object-contain object-center" fetchpriority="high">
         </a>
 
+        <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-8">
             <a href="#missao" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Missão</a>
             <a href="#arsenal" class="text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:-translate-y-0.5 transition-transform">Nossas armas</a>
@@ -269,6 +300,7 @@
             <i class="ph-bold ph-list text-3xl pointer-events-none"></i>
         </button>
 
+        <!-- Mobile Navigation Menu -->
         <div id="mobile-menu" class="hidden absolute top-full left-0 w-full mt-4 bg-legiao-dark/95 backdrop-blur-xl rounded-3xl flex flex-col shadow-2xl border border-white/10 overflow-hidden transform-gpu">
             <a href="#missao" class="px-6 py-5 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Missão</a>
             <a href="#arsenal" class="px-6 py-5 border-b border-white/5 text-sm font-bold uppercase tracking-widest text-gray-300 hover:text-legiao-gold hover:bg-white/5 active:bg-white/10 transition-colors mobile-link">Nossas armas</a>
@@ -276,6 +308,7 @@
         </div>
     </header>
 
+    <!-- 1ª Seção - Hero + Espaço Reels -->
     <section id="inicio" class="relative min-h-[100svh] flex items-center pt-28 pb-12 lg:pt-40 lg:pb-24 overflow-hidden bg-legiao-black z-0">
         <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.2">
             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/IMG_3244.PNG&w=1200&output=webp&q=65" 
@@ -288,6 +321,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
                 
+                <!-- Text -->
                 <div class="lg:col-span-7 text-center lg:text-left reveal-left">
                     <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-legiao-gold/10 border border-legiao-gold/30 text-legiao-gold font-bold text-[10px] sm:text-xs tracking-widest uppercase mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(198,166,100,0.2)]">
                         <span class="relative flex h-2.5 w-2.5">
@@ -333,6 +367,7 @@
                     </div>
                 </div>
 
+                <!-- Espaço Reels -->
                 <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full mx-auto mt-10 md:mt-0">
                     <div class="w-full max-w-[320px] aspect-[9/16] glass-card rounded-[2.5rem] p-2 sm:p-3 shadow-[0_20px_50px_rgba(0,0,0,0.9)] relative overflow-hidden group border border-white/10 hover:border-legiao-gold/30 transition-colors duration-500 transform-gpu">
                         <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-legiao-gold/10 to-transparent rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[shine_4s_infinite] pointer-events-none transform-gpu"></div>
@@ -354,8 +389,10 @@
         </div>
     </section>
 
+    <!-- Wrapper Parallax Cortina -->
     <div class="relative z-10 bg-legiao-dark shadow-[0_-20px_50px_rgba(0,0,0,0.9)] rounded-t-3xl md:rounded-t-[2.5rem] lg:rounded-t-[4rem] overflow-hidden transform-gpu">
 
+        <!-- 2ª Seção - A Nossa Filosofia + Formulário -->
         <section id="missao" class="py-12 md:py-24 relative overflow-hidden">
             <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.15">
                 <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=60&w=1200&auto=format&fit=crop" 
@@ -367,6 +404,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-center">
                     
+                    <!-- Lado Esquerdo -->
                     <div class="lg:col-span-7 text-center lg:text-left reveal-left">
                         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold uppercase text-white mb-4 sm:mb-6 leading-tight tracking-tight">
                             A <span class="text-transparent bg-clip-text bg-gradient-to-r from-legiao-gold to-yellow-600 drop-shadow-md">Nossa Filosofia</span>
@@ -382,6 +420,7 @@
                         </div>
                     </div>
 
+                    <!-- Lado Direito -->
                     <div class="lg:col-span-5 flex justify-center lg:justify-end reveal-right delay-200 w-full max-w-md mx-auto">
                         <div id="alistamento" class="scroll-mt-32 glass-card rounded-3xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.9)] w-full relative overflow-hidden group border-t border-white/10 hover:border-legiao-gold/30 transition-colors duration-500">
                             <div class="absolute -inset-2 bg-gradient-to-r from-transparent via-legiao-gold/10 to-transparent rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[shine_4s_infinite] pointer-events-none transform-gpu"></div>
@@ -421,6 +460,7 @@
             </div>
         </section>
 
+        <!-- 3ª Seção - Diferenciais (Os Nossos Pilares) -->
         <section id="pilares" class="py-12 md:py-24 bg-legiao-black relative overflow-hidden border-t border-white/5 animate-parallax">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 
@@ -433,8 +473,10 @@
                     </p>
                 </div>
 
+                <!-- Grid Vertical no Mobile / Grid 2x2 no Desktop -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
                     
+                    <!-- Pilar 1: Saúde -->
                     <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-colors duration-500 reveal-left delay-100 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/SA%C3%9ADE.jpeg&w=800&output=webp&q=65" alt="Saúde" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45 transform-gpu" loading="lazy" decoding="async">
@@ -452,6 +494,7 @@
                         </div>
                     </div>
 
+                    <!-- Pilar 2: Família -->
                     <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-colors duration-500 reveal-right delay-200 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/FAMILIA.jpeg&w=800&output=webp&q=65" alt="Família" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45 transform-gpu" loading="lazy" decoding="async">
@@ -469,6 +512,7 @@
                         </div>
                     </div>
 
+                    <!-- Pilar 3: Trabalho -->
                     <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-colors duration-500 reveal-left delay-100 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/TRABALHO.jpeg&w=800&output=webp&q=65" alt="Trabalho" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45 transform-gpu" loading="lazy" decoding="async">
@@ -486,6 +530,7 @@
                         </div>
                     </div>
 
+                    <!-- Pilar 4: Honra -->
                     <div class="relative overflow-hidden rounded-3xl p-6 sm:p-8 hover:border-legiao-gold/50 transition-colors duration-500 reveal-right delay-200 group shadow-xl border border-white/5 min-h-[300px] md:aspect-[4/3] flex flex-col justify-end">
                         <div class="absolute inset-0 z-0">
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/HONRA.jpeg&w=800&output=webp&q=65" alt="Honra" class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110 grayscale opacity-45 transform-gpu" loading="lazy" decoding="async">
@@ -507,6 +552,7 @@
             </div>
         </section>
 
+        <!-- 4ª Seção - Estrutura / Arsenal (Produtos) -->
         <section id="arsenal" class="py-12 md:py-28 bg-legiao-dark relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 <div class="text-center mb-10 md:mb-20 reveal">
@@ -519,8 +565,10 @@
                     </p>
                 </div>
 
+                <!-- Grid Vertical no Mobile / Grid 2 Colunas Desktop -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-8 max-w-4xl mx-auto">
                     
+                    <!-- Boné Trucker -->
                     <div class="p-6 md:p-8 rounded-3xl bg-[#0F0F0F] border border-white/5 hover:-translate-y-2 hover:border-legiao-gold/50 transition-all duration-500 group reveal delay-100 shadow-2xl relative overflow-hidden flex flex-col text-center transform-gpu">
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-green/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
                         
@@ -528,6 +576,7 @@
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/WhatsApp%20Image%202026-05-26%20at%2012.02.09%20(5).jpeg&w=600&output=webp&q=65" alt="Boné Trucker" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover/img:opacity-0" loading="lazy" decoding="async">
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/WhatsApp%20Image%202026-05-26%20at%2012.02.09%20(2).jpeg&w=600&output=webp&q=65" alt="Boné Trucker Detalhe" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 group-hover/img:opacity-100 transform-gpu group-hover/img:scale-110" loading="lazy" decoding="async">
                             
+                            <!-- Overlay Ver Detalhes -->
                             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
                                 <div class="bg-legiao-gold text-black px-5 py-2.5 rounded-full font-bold uppercase tracking-widest text-xs flex items-center gap-2 transform translate-y-4 group-hover/img:translate-y-0 transition-all duration-300 shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
                                     <i class="ph-bold ph-magnifying-glass-plus text-lg"></i> Ver Galeria
@@ -544,6 +593,7 @@
                         </a>
                     </div>
 
+                    <!-- Boné Americano -->
                     <div class="p-6 md:p-8 rounded-3xl bg-[#0F0F0F] border-2 border-legiao-gold/20 hover:-translate-y-4 hover:border-legiao-gold transition-all duration-500 group reveal delay-200 shadow-[0_0_30px_rgba(198,166,100,0.1)] relative overflow-hidden flex flex-col text-center md:-mt-6 transform-gpu">
                         <div class="absolute top-0 right-0 bg-legiao-gold text-black text-[9px] sm:text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider z-10 pointer-events-none">Premium</div>
                         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-legiao-gold/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
@@ -552,6 +602,7 @@
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/WhatsApp%20Image%202026-05-26%20at%2012.02.09%20(3).jpeg&w=600&output=webp&q=65" alt="Boné Americano" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover/img:opacity-0" loading="lazy" decoding="async">
                             <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/WhatsApp%20Image%202026-05-26%20at%2012.02.09%20(4).jpeg&w=600&output=webp&q=65" alt="Boné Americano Detalhe" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 group-hover/img:opacity-100 transform-gpu group-hover/img:scale-110" loading="lazy" decoding="async">
                             
+                            <!-- Overlay Ver Detalhes -->
                             <div class="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
                                 <div class="bg-legiao-gold text-black px-5 py-2.5 rounded-full font-bold uppercase tracking-widest text-xs flex items-center gap-2 transform translate-y-4 group-hover/img:translate-y-0 transition-all duration-300 shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
                                     <i class="ph-bold ph-magnifying-glass-plus text-lg"></i> Ver Galeria
@@ -571,6 +622,7 @@
             </div>
         </section>
 
+        <!-- 5ª Seção - A Fraternidade (App/Digital WhatsApp) -->
         <section id="fraternidade" class="bg-[#EBEBEB] text-[#0A0A0A] py-16 md:py-32 overflow-hidden relative border-t border-white/5">
             <div class="absolute inset-0 bg-gradient-to-br from-[#EBEBEB] to-[#D6D6D6] z-0"></div>
             
@@ -579,6 +631,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-24">
                     
+                    <!-- Left: Text content -->
                     <div class="flex-1 md:pr-12 reveal-left text-center md:text-left">
                         <p class="text-legiao-green font-bold text-xs sm:text-sm tracking-widest uppercase mb-3">Comunidade Digital</p>
                         <h2 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] font-bold uppercase tracking-tight mb-6 md:mb-8 leading-[1.05] text-[#0A0A0A]">
@@ -612,22 +665,28 @@
                         </a>
                     </div>
                     
+                    <!-- Right: Phones Mockup (WhatsApp Group) -->
                     <div class="flex-1 relative flex justify-center md:justify-end reveal-right mt-6 md:mt-0">
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-[#D4AF37] rounded-[4rem] rotate-6 z-0 shadow-lg opacity-80 hidden sm:block"></div>
                         
+                        <!-- Celular Principal -->
                         <div class="relative w-[260px] h-[540px] sm:w-[300px] sm:h-[620px] max-w-[90vw] phone-mockup z-20 shadow-2xl bg-[#0b141a] transform-gpu mx-auto animate-float">
+                            <!-- Notch -->
                             <div class="absolute top-0 inset-x-0 h-6 sm:h-7 flex justify-center z-30">
                                 <div class="w-28 sm:w-36 h-6 sm:h-7 bg-[#050505] rounded-b-2xl sm:rounded-b-3xl"></div>
                             </div>
                             
+                            <!-- Tela do WhatsApp -->
                             <div class="absolute inset-0 bg-[#0b141a] z-20 flex flex-col text-white font-sans overflow-hidden">
+                                <!-- Background com pattern do WhatsApp -->
                                 <div class="absolute inset-0 opacity-10 bg-[url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg')] bg-cover mix-blend-overlay z-0"></div>
                                 
+                                <!-- WA Header -->
                                 <div class="h-20 sm:h-24 bg-[#202c33] flex items-end pb-2 px-3 sm:px-4 relative z-10 shadow-md">
                                     <div class="flex items-center gap-2 sm:gap-3 w-full">
                                         <i class="ph-bold ph-arrow-left text-gray-300 text-lg sm:text-xl"></i>
                                         <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-legiao-black flex items-center justify-center shrink-0 overflow-hidden border border-white/10">
-                                            <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/1.png&w=150&output=webp&q=70" alt="Logo Grupo" class="w-full h-full object-cover scale-[1.15]" loading="lazy" decoding="async">
+                                            <img src="https://github.com/ohebertgustavo-scale/legiaoleal/blob/main/1.png?raw=true" alt="Logo Grupo" class="w-full h-full object-cover scale-[1.15]" loading="lazy" decoding="async">
                                         </div>
                                         <div class="flex-1">
                                             <h3 class="font-bold text-sm sm:text-base leading-tight">Legião Leal</h3>
@@ -638,6 +697,7 @@
                                     </div>
                                 </div>
                                 
+                                <!-- WA Chat Body -->
                                 <div class="flex-1 p-3 sm:p-4 space-y-4 overflow-hidden relative z-10 flex flex-col justify-end pb-6">
                                     <div class="flex justify-center mb-2">
                                         <span class="bg-[#182229] text-gray-400 text-[9px] sm:text-[10px] px-3 py-1 rounded-lg uppercase tracking-widest font-bold">Hoje</span>
@@ -669,6 +729,7 @@
                                     </div>
                                 </div>
                                 
+                                <!-- WA Footer (Input) -->
                                 <div class="h-14 sm:h-16 bg-[#202c33] flex items-center px-2 sm:px-3 gap-2 relative z-10 pb-2 sm:pb-0">
                                     <i class="ph-bold ph-smiley text-gray-400 text-xl sm:text-2xl"></i>
                                     <i class="ph-bold ph-paperclip text-gray-400 text-xl sm:text-2xl mr-1"></i>
@@ -687,6 +748,7 @@
             </div>
         </section>
 
+        <!-- 6ª Seção - A Tropa (Social Proof) -->
         <section id="tropa" class="py-12 md:py-32 bg-legiao-black text-white relative overflow-hidden border-t border-white/5">
             <div class="absolute inset-0 w-full h-[140%] -top-[20%] overflow-hidden z-0 parallax-wrapper" data-speed="0.2">
                 <img src="https://images.unsplash.com/photo-1526506190296-613d9657ce24?q=60&w=1200&auto=format&fit=crop" 
@@ -707,16 +769,20 @@
                     </p>
                 </div>
 
+                <!-- Grid Vertical no Mobile / Grid 3 Colunas no Desktop -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-10 sm:mb-16 md:mb-24">
                     
+                    <!-- Tropa Item 1 -->
                     <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-100 border border-white/10 hover:border-legiao-gold transition-colors w-full transform-gpu">
                         <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/brunao.jpg&w=600&output=webp&q=65" alt="Homem Forte de Boné" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 grayscale group-hover:grayscale-0 transform-gpu" loading="lazy" decoding="async">
                     </div>
 
+                    <!-- Tropa Item 2 -->
                     <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-200 border border-white/10 hover:border-legiao-gold transition-colors w-full md:-translate-y-8 transform-gpu">
                         <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/casal.jpg&w=600&output=webp&q=65" alt="Trabalho com Boné" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 grayscale group-hover:grayscale-0 transform-gpu" loading="lazy" decoding="async">
                     </div>
 
+                    <!-- Tropa Item 3 -->
                     <div class="rounded-3xl overflow-hidden aspect-[4/5] sm:min-h-[400px] relative group cursor-pointer shadow-2xl reveal delay-300 border border-white/10 hover:border-legiao-gold transition-colors w-full sm:col-span-2 md:col-span-1 transform-gpu">
                         <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/lucao.jpg&w=600&output=webp&q=65" alt="Honra com Boné" class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-1000 grayscale group-hover:grayscale-0 transform-gpu" loading="lazy" decoding="async">
                     </div>
@@ -730,26 +796,41 @@
             </div>
         </section>
 
-        <section class="py-16 md:py-32 bg-legiao-green text-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-0 pointer-events-none"></div>
+        <!-- 7ª Seção - CTA Final -->
+        <section class="pt-16 pb-28 md:pt-32 md:pb-48 bg-legiao-green text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-0 pointer-events-none"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-legiao-gold rounded-full mix-blend-overlay filter blur-[150px] opacity-20 pointer-events-none z-0 transform-gpu"></div>
             
             <div class="max-w-5xl mx-auto px-4 relative z-20 reveal">
                 <h2 class="font-display text-3xl sm:text-4xl md:text-6xl lg:text-[5rem] font-bold uppercase text-white mb-6 md:mb-8 leading-tight md:leading-[1] tracking-tight drop-shadow-lg">
                     O Brasil não precisa de mais promessas,<br>
                     <span class="text-legiao-gold drop-shadow-md">PRECISA RESGATAR SEUS PILARES.</span>
-        <!-- Footer -->
-        <footer class="bg-[#050505] text-gray-500 py-10 md:py-16 text-center text-sm border-t border-white/5">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
-                <a href="#inicio" class="mb-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
-                    <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/Design%20sem%20nome.png&w=400&output=webp&q=70" alt="Legião Leal Logo" class="h-10 sm:h-14 w-auto" loading="lazy" decoding="async">
+                </h2>
+                <p class="text-gray-300 font-medium mb-10 md:mb-14 text-sm sm:text-xl max-w-3xl mx-auto drop-shadow-sm">Junte-se a uma Legião Leal de pessoas que vivem o mesmos valores.</p>
+                
+                <a href="#alistamento" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="font-display active:scale-95 w-full sm:w-auto bg-legiao-black hover:bg-[#0A0A0A] text-white border border-legiao-gold/30 hover:border-legiao-gold px-8 md:px-14 py-4 md:py-7 rounded-full font-bold uppercase tracking-widest text-sm sm:text-xl md:text-2xl inline-flex items-center justify-center gap-3 md:gap-4 transition-all transform hover:scale-105 sm:hover:-translate-y-2 shadow-2xl">
+                    Reivindicar meu lugar <i class="ph-bold ph-arrow-up text-xl md:text-3xl text-legiao-gold"></i>
                 </a>
-                <p class="mb-2 font-bold text-gray-400 uppercase tracking-widest text-[10px] sm:text-xs">SAÚDE • FAMÍLIA • TRABALHO • HONRA</p>
-                <p class="mb-6 font-medium text-[10px] sm:text-xs">O exército de valores que reconstrói a nação. © 2026 Legião Leal.</p>
-                <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-8 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#050505] text-gray-500 py-12 md:py-20 text-center text-sm border-t border-white/5 relative z-20">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+                <a href="#inicio" class="mb-10 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+                    <img src="https://wsrv.nl/?url=raw.githubusercontent.com/ohebertgustavo-scale/legiaoleal/main/Design%20sem%20nome.png&w=400&output=webp&q=70" alt="Legião Leal Logo" class="h-12 sm:h-16 w-auto" loading="lazy" decoding="async">
+                </a>
+                
+                <!-- Ajuste no espaçamento do texto do rodapé -->
+                <p class="mb-4 font-bold text-gray-400 uppercase tracking-widest text-xs sm:text-sm">SAÚDE • FAMÍLIA • TRABALHO • HONRA</p>
+                <p class="mb-8 font-medium text-xs sm:text-sm text-gray-600">O exército de valores que reconstrói a nação. © 2026 Legião Leal.</p>
+                
+                <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-10 text-xs sm:text-sm font-bold uppercase tracking-widest text-gray-500">
                     <a href="#" class="hover:text-legiao-gold transition-colors">Instagram</a>
                     <span class="text-gray-800 hidden sm:inline">|</span>
                     <a href="#" class="hover:text-legiao-gold transition-colors">YouTube</a>
+                    <span class="text-gray-800 hidden sm:inline">|</span>
+                    <a href="#" class="hover:text-legiao-gold transition-colors">TikTok</a>
                     <span class="text-gray-800 hidden sm:inline">|</span>
                     <a href="#" class="hover:text-legiao-gold transition-colors">Termos de Uso</a>
                 </div>
@@ -758,15 +839,15 @@
 
     </div> <!-- Fim do Wrapper Parallax -->
 
-    <!-- Novo Botão Premium do WhatsApp Flutuante -->
-    <div class="fixed bottom-6 right-6 z-[90] flex flex-col items-end gap-2 group">
-        <!-- Tooltip -->
-        <div class="bg-white/95 backdrop-blur-md text-gray-900 text-[11px] sm:text-xs font-bold px-4 py-2 rounded-xl shadow-xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none border border-black/5 whitespace-nowrap">
+    <!-- Novo Botão Premium do WhatsApp Flutuante (CORRIGIDO: FIXO E SEMPRE VISÍVEL) -->
+    <div class="whatsapp-fixed-btn group">
+        <!-- Tooltip animado "Fale com a tropa" -->
+        <div class="bg-white/95 backdrop-blur-md text-gray-900 text-[11px] sm:text-xs font-bold px-4 py-2 rounded-xl shadow-xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 pointer-events-none border border-black/5 whitespace-nowrap animate-fade-in-out md:animate-none">
             Dúvidas? Fale com a tropa.
         </div>
         
-        <!-- Botão com Ping Animation apontando para o número atualizado -->
-        <a href="https://wa.me/5519981084510" target="_blank" rel="noopener noreferrer" class="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16">
+        <!-- Botão com Ping Animation -->
+        <a href="https://wa.me/5519981084510?text=Ol%C3%A1%20tudo%20bem%3F%20Estou%20interessado%20no%20bon%C3%A9%20da%20Legi%C3%A3o%20Leal%21" target="_blank" class="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 animate-bounce-subtle">
             <!-- Anel Pulsante (Ping) -->
             <span class="absolute inline-flex h-[110%] w-[110%] rounded-full bg-[#25D366] opacity-30 animate-ping"></span>
             
@@ -779,6 +860,7 @@
 
     <!-- Modal Galeria -->
     <div id="gallery-modal" class="fixed inset-0 z-[9999] bg-[#050505]/95 backdrop-blur-xl hidden flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+        <!-- Botões Modal Omitidos para manter o foco (já estavam ok) -->
         <button onclick="closeGallery()" class="absolute top-6 right-4 sm:top-10 sm:right-10 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/5 hover:bg-legiao-gold text-white hover:text-black rounded-full transition-all duration-300 z-50 active:scale-95">
             <i class="ph-bold ph-x text-xl sm:text-2xl"></i>
         </button>
@@ -799,9 +881,11 @@
         </div>
 
         <div id="gallery-thumbnails" class="flex gap-3 sm:gap-6 mt-6 sm:mt-8 overflow-x-auto pb-4 px-4 max-w-full z-40 hide-scrollbar">
-            </div>
+            <!-- Thumbnails injetadas via JS -->
+        </div>
     </div>
 
+    <!-- Scripts Otimizados -->
     <script>
         // --- Otimização de Performance no Scroll (Debouncing com RAF) ---
         const navbar = document.getElementById('navbar');
